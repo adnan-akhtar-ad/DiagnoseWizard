@@ -9,11 +9,11 @@ function App() {
 
 
   return (
-    <>
+    <div >
       <Navbar/>
       <Home/>
       <About/>
-    </>
+    </div>
   )
 }
 
