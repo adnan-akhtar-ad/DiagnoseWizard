@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
             },
         ])
     return (
-        <section className="mt-[100px]]">
+        <section className="my-[100px]">
             <div>
                 <div className="flex justify-between w-[1073px] px-[75px] ">
                     <div className="inline-block translate-y-[-128px]">
