@@ -1,5 +1,6 @@
 import { useState } from "react";
 import WhyChooseUsPoint from "../Components/WhyChooseUsPoint";
+import TypeWriter from "../Components/TypeWriter";
 
 const WhyChooseUs = () => {
     const [points, setPoints] = useState
@@ -24,6 +25,13 @@ const WhyChooseUs = () => {
                 "point": "Coordinated Care"
             },
         ])
+    const [array, setArray] = useState(["Wellness", "Compassion", "Quality",
+        " Strength",
+        "Fitness",
+
+        "Resilience",
+        " Energy",
+    ]);
     return (
         <section className="my-[100px]">
             <div>
@@ -50,7 +58,7 @@ const WhyChooseUs = () => {
                 </div>
                 <div className="w-[1120px] text-start px-[75px]">
                     <h3 className="font-bold text-[40px] text-start mb-[30px]">
-                        Wellness, Compassion, Quality
+                        <TypeWriter array={array} />
                     </h3>
                     <p className="font-medium text-[20px] text-start mb-[45px]">
                         They live in Bookmarks grove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it.
