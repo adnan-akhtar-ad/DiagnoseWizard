@@ -10,10 +10,10 @@ const ConnectWithUs = () => {
                  Connect with DiagnoseWizard, Take a step towards prevention
                 </h1>
                 <p className="font-medium text-[20px]">
-                    Far far away, behind the word mountains, far from the countries Waganda and Vibranium.
+                    Far far away, behind the word mountains, far from the countries Waganda and Asgard.
                 </p>
             </div>
-            <div className=" w-[475px] shadow-lg px-[35px]">
+            <div className=" w-[475px] shadow-lg px-[35px] py-[20px] rounded-lg">
                 <input type="text" placeholder="Name" className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"/>
                 <input type="email" placeholder="Email" className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />
                 <input type="text" placeholder="Message" className="w-[400px] h-[150px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />

@@ -8,6 +8,7 @@ import ServicesPage from './Pages/ServicesPage'
 import WhyChooseUs from './Pages/WhyChooseUs'
 import CarousalPage from './Pages/CarousalPage'
 import ConnectWithUs from './Pages/ConnectWithUs'
+import Footer from './Pages/Footer'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <WhyChooseUs/>
       <CarousalPage/>
       <ConnectWithUs/>
+      <Footer/>
     </div>
   )
 }
