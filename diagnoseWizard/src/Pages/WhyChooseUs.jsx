@@ -25,13 +25,7 @@ const WhyChooseUs = () => {
                 "point": "Coordinated Care"
             },
         ])
-    const [array, setArray] = useState(["Wellness", "Compassion", "Quality",
-        " Strength",
-        "Fitness",
-
-        "Resilience",
-        " Energy",
-    ]);
+    const [array, setArray] = useState(["Wellness", "Compassion", "Quality", " Strength", "Fitness", "Resilience", " Energy",]);
     return (
         <section className="my-[100px]">
             <div>

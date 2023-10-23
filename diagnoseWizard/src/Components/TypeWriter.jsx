@@ -4,7 +4,7 @@ import { Typewriter } from 'react-simple-typewriter'
 const TypeWriter = (props) => {
     return ( <Typewriter
         words={props.array}
-        loop={5}
+        loop={Infinity}
         cursor
         cursorStyle="_"
         typeSpeed={90}

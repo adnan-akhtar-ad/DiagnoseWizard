@@ -7,6 +7,7 @@ import About from './Pages/About'
 import ServicesPage from './Pages/ServicesPage'
 import WhyChooseUs from './Pages/WhyChooseUs'
 import CarousalPage from './Pages/CarousalPage'
+import ConnectWithUs from './Pages/ConnectWithUs'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <ServicesPage/>
       <WhyChooseUs/>
       <CarousalPage/>
+      <ConnectWithUs/>
     </div>
   )
 }
