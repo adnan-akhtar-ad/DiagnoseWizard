@@ -20,7 +20,7 @@ const About = () => {
         ]);
 
     return (
-        <section className="font-Satoshi w-[100%]  ">
+        <section className="font-Satoshi w-[100%]  " id="About">
             <div className="my-[100px]">
                 <h2 className="text-[46px] font-bold text-start">
                     Dedicated to provide best diagnosis.

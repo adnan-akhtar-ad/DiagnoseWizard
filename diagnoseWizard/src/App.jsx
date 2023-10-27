@@ -9,8 +9,13 @@ import WhyChooseUs from './Pages/WhyChooseUs'
 import CarousalPage from './Pages/CarousalPage'
 import ConnectWithUs from './Pages/ConnectWithUs'
 import Footer from './Pages/Footer'
-import Login from './Pages/LoginPage'
+
+
 import SignUp from './Pages/SignUpPage'
+
+import LoginPage from './Pages/LoginPage'
+
+
 
 function App() {
 
@@ -19,7 +24,8 @@ function App() {
     <div >
       <Navbar/>
       <SignUp/>
-      <Login/>
+      
+      <LoginPage/>
       <Home/>
       <About/>
       <ServicesPage/>
