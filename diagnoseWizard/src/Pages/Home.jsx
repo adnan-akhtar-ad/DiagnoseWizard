@@ -1,6 +1,6 @@
 const Home = () => {
     return (
-        <section className="flex font-Satoshi mt-[40px] mb-[100px] w-[100%]">
+        <section className="flex font-Satoshi mt-[40px] mb-[100px] w-[100%]" id="Home">
             <div className="flex  ">
                 <div className="w-[497px] h-[447px] bg-[#FFC567] rounded-xl shrink-0">
                     {/* <div className="flex w-[180px] h-[60px] bg-[#FFFFFF]  rounded-xl z-40">
