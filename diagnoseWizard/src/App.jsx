@@ -10,6 +10,7 @@ import CarousalPage from './Pages/CarousalPage'
 import ConnectWithUs from './Pages/ConnectWithUs'
 import Footer from './Pages/Footer'
 import Login from './Pages/LoginPage'
+import SignUp from './Pages/SignUpPage'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
   return (
     <div >
       <Navbar/>
+      <SignUp/>
       <Login/>
       <Home/>
       <About/>
