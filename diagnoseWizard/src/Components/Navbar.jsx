@@ -1,4 +1,5 @@
 
+
 const Navbar = () => {
     return (
         <nav className="flex bg-[#FFF] flex-row justify-around px-[28px] py-[20px] font-Satoshi ">
