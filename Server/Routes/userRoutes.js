@@ -12,6 +12,7 @@ router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.route("/").get(userController.getAllUsers).post(userController.createUser);
 
-router.route("/:id").get(userController.getUniqueUser).patch(userController.updateUser).delete(userController.deleteUser);
+router.route("/:id").get(userController.getUniqueUser).delete(userController.deleteUser);
+router.route("/:iv/:encryptedData").patch(userController.updateUser)
 
 module.exports = router;

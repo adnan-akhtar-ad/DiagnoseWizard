@@ -33,9 +33,12 @@ const SignUpPage = () => {
                     "passwordConfirm":passwordConfirm
                 }),
             })
-
+            const data=await response.json();
             if (response.ok) {
-                sessionStorage.setItem("jwt", response.token);
+                console.log("signed in");
+                sessionStorage.setItem("jwt",data.token);
+                sessionStorage.setItem("iv",data.data.iv);
+                sessionStorage.setItem("encryptedData",data.data.encryptedData);
 
             }
             if (!response.ok) {

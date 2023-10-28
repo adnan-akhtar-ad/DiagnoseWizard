@@ -2,6 +2,7 @@ const jwt=require('jsonwebtoken');
 const User=require('./../Models/userModel');
 const catchAsync=require('./../utils/catchAsync');
 const AppError=require('./../utils/appError');
+const Cryption=require('../utils/Cryption');
 
 const signToken=id=>{
     return jwt.sign({id},process.env.JWT_SECRET,{
@@ -27,23 +28,25 @@ exports.signup=catchAsync(async(req,res,next)=>{
     })
 })
 
-exports.login =catchAsync(async (req, res,next) => {
-    const {email ,password}= req.body;
-    if(!email || !password){
-      return next(new AppError('please provide email and password',400));
-
+exports.login = catchAsync(async (req, res, next) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return next(new AppError('Please provide email and password', 400));
     }
-const user=await User.findOne({email}).select('+password');
 
-if(!user || !(await user.correctPassword(password,user.password))){
-    return next(new AppError('Incorrect email or password',401));
-}
-    const token=signToken(user._id);
-    
+    const user = await User.findOne({ email }).select('+password');
+
+    if (!user || !(await user.correctPassword(password, user.password))) {
+        return next(new AppError('Incorrect email or password', 401));
+    }
+    const token = signToken(user._id);
+
     res.status(200).json({
         status: 'success',
         token,
-    })
+        data:  Cryption.encrypt(user._id.toString()) // Convert ObjectId to string
+        
+    });
+});
 
-})
 
