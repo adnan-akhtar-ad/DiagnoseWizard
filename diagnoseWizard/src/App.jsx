@@ -11,9 +11,9 @@ import ConnectWithUs from './Pages/ConnectWithUs'
 import Footer from './Pages/Footer'
 
 
-import SignUp from './Pages/SignUpPage'
 
 import LoginPage from './Pages/LoginPage'
+import SignUpPage1 from './Pages/SignUpPage1'
 
 
 
@@ -23,8 +23,8 @@ function App() {
   return (
     <div >
       <Navbar/>
-      <SignUp/>
       
+      <SignUpPage1/>
       <LoginPage/>
       <Home/>
       <About/>

@@ -29,7 +29,7 @@ const About = () => {
                 <div className="flex">
                     {
                       aboutImageProps.map((detail,index)=>{
-return (<AboutImageCard imgUrl={detail.imgUrl} docTitle={detail.docTitle}/>)
+return (<AboutImageCard imgUrl={detail.imgUrl} docTitle={detail.docTitle} key={index}/>)
                       }) 
                     }
 

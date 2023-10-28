@@ -7,7 +7,7 @@ const LoginPage = () => {
   }
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
   const handleLogIn = async (e) => {
     e.preventDefault();
 

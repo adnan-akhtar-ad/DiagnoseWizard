@@ -42,7 +42,9 @@ const WhyChooseUs = () => {
                         {
                             points.map((detail, index) => {
                                 return (
-                                    <WhyChooseUsPoint point={detail.point} />
+                                    <WhyChooseUsPoint 
+                                    key={index}
+                                    point={detail.point} />
                                 )
 
                             })

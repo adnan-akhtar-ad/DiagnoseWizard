@@ -46,7 +46,7 @@ const CarousalPage = () => {
                     {
                         carousalDetails.map((details, index) => {
                             return (
-                                <CarousalCard count={details.count} comment={details.comment} name={details.name} />
+                                <CarousalCard key={index} count={details.count} comment={details.comment} name={details.name} />
                             )
                         })
                     }
