@@ -2,18 +2,10 @@ import { useState } from 'react'
 
 import './App.css'
 import Navbar from './Components/Navbar'
-import Home from './Pages/Home'
 import Hero from './Pages/Hero'
-import About from './Pages/About'
-import ServicesPage from './Pages/ServicesPage'
-import WhyChooseUs from './Pages/WhyChooseUs'
-import CarousalPage from './Pages/CarousalPage'
-import ConnectWithUs from './Pages/ConnectWithUs'
-import Footer from './Pages/Footer'
 import LoginPage from './Pages/LoginPage'
 import SignUpPage from './Pages/SignUpPage'
-import ChangePassword from './Pages/ChangePassword'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from 'react-router-dom'
 import { useRef } from 'react'
@@ -68,20 +60,8 @@ function App() {
       </Routes>
 
 
-
-
-      {/* <LoginPage /> */}
-      {/* <ChangePassword /> */}
-      {/* <SignUpPage /> */}
-      {/* <Home /> */}
-      {/* <About />
-      <ServicesPage />
-      <WhyChooseUs />
-      <CarousalPage />
-      <ConnectWithUs />
-      <Footer /> */}
     </div>
   )
 }
 
-export default App
+export default App;

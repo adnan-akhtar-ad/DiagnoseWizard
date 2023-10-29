@@ -1,6 +1,12 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 const SignUpPage = () => {
+    const navigate = useNavigate();
+
+    const navigateTo = (address) => {
+        navigate(address);
+    };
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,19 +33,19 @@ const SignUpPage = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    "name":name,
+                    "name": name,
                     "email": email,
                     "password": password,
-                    "passwordConfirm":passwordConfirm
+                    "passwordConfirm": passwordConfirm
                 }),
             })
-            const data=await response.json();
-            if (response.ok) {
+            const data = await response.json();
+            if (data.status==='success') {
                 console.log("signed in");
-                sessionStorage.setItem("jwt",data.token);
-                sessionStorage.setItem("iv",data.data.iv);
-                sessionStorage.setItem("encryptedData",data.data.encryptedData);
-
+                sessionStorage.setItem("jwt", data.token);
+                sessionStorage.setItem("iv", data.data.iv);
+                sessionStorage.setItem("encryptedData", data.data.encryptedData);
+                navigateTo('/');
             }
             if (!response.ok) {
                 console.log("The status code :", response.status)
@@ -55,7 +61,7 @@ const SignUpPage = () => {
 
             window.location.reload();
         } catch (err) {
-            console.error(`Error logging the user`, err.message);
+            console.error(`Error signing in the user`, err.message);
 
         }
         setName("");
@@ -102,7 +108,7 @@ const SignUpPage = () => {
                     className="w-[400px] h-[50px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px] "
                     onClick={handleSignUp}
                 >Sign Up</button>
-                <div className='mt-[10px]'>Already have an account? <a href="#" className='text-[#3b82f6] hover:underline'>Login</a></div>
+                <div className='mt-[10px]'>Already have an account? <Link to="/login" className='text-[#3b82f6] hover:underline'>Login</Link></div>
             </div>
 
         </section>

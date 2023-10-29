@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useRef } from 'react';
-
+import {useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
- 
+    const navigate = useNavigate();
+
+    const navigateTo = (address) => {
+         navigate(address);
+     };
 
     const jwt = sessionStorage.getItem("jwt");
     const iv=sessionStorage.getItem("iv");
@@ -13,6 +16,7 @@ const Navbar = (props) => {
         sessionStorage.clear("jwt");
         sessionStorage.clear("iv");
         sessionStorage.clear("encryptedData");
+        navigateTo('/login');
 
     }
     const scrollDown = (ref) => {

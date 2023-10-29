@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+ const navigateTo = (address) => {
+      navigate(address);
+  };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleEmailChange = (e) => {
@@ -28,10 +33,11 @@ const LoginPage = () => {
       })
       const data=await response.json();
       if(data.status==='success'){
-        toast.success('🦄 Wow so easy!');
+      
         sessionStorage.setItem("jwt",data.token);
         sessionStorage.setItem("iv",data.data.iv);
         sessionStorage.setItem("encryptedData",data.data.encryptedData);
+        navigateTo('/');
     
       }
       if (!response.ok) {
@@ -45,7 +51,7 @@ const LoginPage = () => {
 
 
       }
-      // window.location.reload();
+      window.location.reload();
     } catch (err) {
       console.error(`Error logging the user`, err.message);
     }
@@ -80,7 +86,7 @@ const LoginPage = () => {
         className="w-[400px] h-[50px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px] "
         onClick={handleLogIn}
         >Login</button>
-        <div className='mt-[10px]'>Not registered yet? <a href="#" className='text-[#3b82f6] hover:underline'>Create account</a></div>
+        <div className='mt-[10px]'>Not registered yet? <Link to="/signup" className='text-[#3b82f6] hover:underline'>Create account</Link></div>
         <a href="#" className='text-[#3b82f6] hover:underline'>Forget Password?</a>
       </div>
 
