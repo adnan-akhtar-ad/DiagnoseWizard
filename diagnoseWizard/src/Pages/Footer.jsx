@@ -2,7 +2,7 @@ import { useState } from "react";
 import Mapper from "../Components/Mapper";
 
 
-const Footer = () => {
+const Footer = (props) => {
 
     const [diagnoseDetails, setdiagnoseDetails] = useState([
         { "name": "Covid-19", "link": "#" },
@@ -68,7 +68,7 @@ const Footer = () => {
 
 
     return (
-        <section className="bg-[#18A0A9] text-[#FFFFFF]  py-[100px] !w-[100%]">
+        <section className="bg-[#18A0A9] text-[#FFFFFF]  py-[100px] !w-[100%]" id="Footer" ref={props.FooterSection}> 
             <div className="flex justify-around text-start">
                 <div className="flex flex-col">
                       <span className="flex  mb-[10px] font-semibold text-[24px]"> <img src="assets/healthcare 1(1).svg" alt="" className="mr-[18px]" />DiagnoseWizard</span>

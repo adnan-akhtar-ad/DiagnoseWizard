@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,8 +27,8 @@ const LoginPage = () => {
         }),
       })
       const data=await response.json();
-      if(response.ok){
-        console.log("logged in");
+      if(data.status==='success'){
+        toast.success('🦄 Wow so easy!');
         sessionStorage.setItem("jwt",data.token);
         sessionStorage.setItem("iv",data.data.iv);
         sessionStorage.setItem("encryptedData",data.data.encryptedData);
@@ -42,7 +45,7 @@ const LoginPage = () => {
 
 
       }
-      window.location.reload();
+      // window.location.reload();
     } catch (err) {
       console.error(`Error logging the user`, err.message);
     }
@@ -51,7 +54,7 @@ const LoginPage = () => {
 
   }
   return (
-    <section className="flex justify-between my-[100px] py-[100px]">
+    <section className="flex justify-between my-[100px] py-[100px]" id="LoginPage">
       <div>
         <img src="assets/undraw_medicine_b-1-ol.svg" className="h-[400px] " alt="" />
       </div>

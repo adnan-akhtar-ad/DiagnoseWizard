@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ServicesCard from "../Components/ServicesCard";
-const ServicesPage = () => {
+const ServicesPage = (props) => {
     const [serviceCardProps, setServiceCardProps] =
         useState([
             {
@@ -25,7 +25,7 @@ const ServicesPage = () => {
             }
         ])
     return (
-        <section>
+        <section id="ServicesPage" ref={props.ServicesPageSection}>
             <div className="my-[100px]" >
                 <p className="flex justify-start text-[#09A4AD] font-bold text-[16px]">DIAGNOSES & TREATMENTS</p>
                 <div className="flex justify-between w-[1120px]">

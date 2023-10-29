@@ -8,7 +8,7 @@ import '../App.css';
 
 // import required modules
 import { Navigation } from 'swiper/modules';
-const CarousalPage = () => {
+const CarousalPage = (props) => {
     const [carousalDetails, setCarousalDetails] = useState
         ([
             {
@@ -31,16 +31,12 @@ const CarousalPage = () => {
                 "comment": `"I'm impressed with the accuracy of the diagnoses on diagnoseWizard. It's like having a virtual doctor at my fingertips!."`,
                 "name": "Mohit Raghav"
             },
-            // {
-            //     "count": 4,
-            //     "comment": `"The information provided by diagnoseWizard is so helpful and easy to understand. I appreciate the clarity in diagnosis."`,
-            //     "name": "David"
-            // },
+            
 
         ])
     return (
 
-        <section className='my-[100px]'>
+        <section className='my-[100px]' id='CarousalPage' ref={props.CarousalPageSection}>
 {/* <Swiper navigation={true} modules={[Navigation]} className="mySwiper"> */}
                 <div className='grid grid-cols-2 w-[1136px] justify-between'>
                     {

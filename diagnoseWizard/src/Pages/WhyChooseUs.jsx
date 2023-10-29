@@ -2,7 +2,7 @@ import { useState } from "react";
 import WhyChooseUsPoint from "../Components/WhyChooseUsPoint";
 import TypeWriter from "../Components/TypeWriter";
 
-const WhyChooseUs = () => {
+const WhyChooseUs = (props) => {
     const [points, setPoints] = useState
         ([
             {
@@ -27,7 +27,7 @@ const WhyChooseUs = () => {
         ])
     const [array, setArray] = useState(["Wellness", "Compassion", "Quality", " Strength", "Fitness", "Resilience", " Energy",]);
     return (
-        <section className="my-[100px]">
+        <section className="my-[100px]" id="WhyChooseUs" ref={props.WhyChooseUsSection}>
             <div>
                 <div className="flex justify-between w-[1073px] px-[75px] ">
                     <div className="inline-block translate-y-[-128px]">

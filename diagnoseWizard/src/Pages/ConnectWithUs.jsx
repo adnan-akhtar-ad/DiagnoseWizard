@@ -1,6 +1,6 @@
-const ConnectWithUs = () => {
+const ConnectWithUs = (props) => {
     return (
-        <section className="py-[100px]">
+        <section className="py-[100px]" id="ConnectWithUs" ref={props.ConnectWithUsSection}>
            <div className="flex text-start justify-between">
            <div className="w-[464px]">
                 <p className="font-bold text-[12px] font-bold text-[#09A4AD]">

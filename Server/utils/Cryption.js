@@ -6,7 +6,7 @@ dotenv.config({ path: "./config.env" });
 const key = Buffer.from(process.env.KEY, "hex");
 // const iv = crypto.randomBytes(16);
 const iv = Buffer.from(process.env.IV, 'hex');
-// const Algo=process.env.ALGORITHM;
+
 
 exports.encrypt = (text) => {
     let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv);

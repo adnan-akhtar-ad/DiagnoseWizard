@@ -64,7 +64,7 @@ const SignUpPage = () => {
         setPasswordConfirm("");
     }
     return (
-        <section className="flex justify-between my-[100px] py-[100px]">
+        <section className="flex justify-between my-[100px] py-[50px]">
             <div>
                 <img src="assets/health-flatline-3a65b.svg" className="h-[500px] " alt="" />
             </div>

@@ -50,9 +50,9 @@ exports.updateUser = async (req, res) => {
       "iv": req.params.iv,
       "encryptedData": req.params.encryptedData
     }
-    console.log(text);
-    const user_id = Cryption.decrypt(text)
-    console.log(user_id);
+
+    const user_id = Cryption.decrypt(text);
+   
 
     const newPassword = await bcrypt.hash(req.body.password, 12);
     console.log(newPassword);
