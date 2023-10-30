@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
+router.post('/forgotPassword',authController.forgotPassword);
 router.route("/").get(userController.getAllUsers).post(userController.createUser);
 
 router.route("/:id").get(userController.getUniqueUser).delete(userController.deleteUser);
