@@ -67,8 +67,8 @@ exports.forgotPassword= catchAsync(async(req,res,next)=>{
         host: 'smtp.gmail.com',
         port: 587,
         auth: {
-            user: 'karthikkotakk@gmail.com',
-            pass: 'youonlyliveonce@123456'
+            user: '',
+            pass: ''
         }
     });
     const generateOTP=()=> {
