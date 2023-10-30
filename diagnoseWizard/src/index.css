@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#NotFound{
+    font-family: 'Indie Flower', cursive;
+ 
+}
 *{
     scroll-behavior: smooth;
 }

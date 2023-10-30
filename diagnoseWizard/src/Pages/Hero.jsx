@@ -11,6 +11,7 @@ const Hero = (props) => {
 
     return (
         <section>
+            
             <Home HomeSection={props.HomeSection} />
             <About AboutSection={props.AboutSection} />
             <ServicesPage ServicesPageSection={props.ServicesPageSection} />
