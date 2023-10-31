@@ -8,7 +8,7 @@ dotenv.config({ path: "./config.env" });
 exports.SendMail = async (email, UserName, template) => {
   try {
     const transporter = nodemailer.createTransport({
-    //   host: process.env.HOST,
+      host: process.env.HOST,
       service: "gmail",
       auth: {
         user: process.env.USER,
