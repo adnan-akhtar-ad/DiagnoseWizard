@@ -5,19 +5,20 @@ const dotenv = require("dotenv");
 
 
 dotenv.config({ path: "./config.env" });
-exports.SendMail = async (email, UserName, template) => {
+const SendMail = async (email,otp,UserName, template) => {
   try {
+      
     const transporter = nodemailer.createTransport({
       host: process.env.HOST,
       service: "gmail",
       auth: {
-        user: process.env.USER,
+        user: process.env.USER_EMAIL,
         pass: process.env.PASS,
       },
     });
 
     let subject, text, html;
-     const otp=generateOTP();
+   
     if (template === "registration") {
       subject = "Welcome to DiagnoseWizard - Registration OTP";
       text =
@@ -61,15 +62,12 @@ exports.SendMail = async (email, UserName, template) => {
       </body>
       
       </html>`;
-    } else if (template === "passwordReset") {
-      subject = "Password Reset Requested!";
+    } else if (template === "changePassword") {
+      subject = "DiagnoseWizard-Your password is changed!!";
       text =
         `Hello ${UserName} ,\n\n` +
-        `You have requested a password reset for your DiagnoseWizard account.` +
-        `OTP for Temporary Password: ${otp}\n\n` +
-        `Please change your password after logging in for security reasons.` +
-        `If you didn't request this password reset, please contact us immediately.` +
-        `For additional security, this OTP will expire in 24 hours.\n\n` +
+        `You have changed your password for your DiagnoseWizard account.` +
+        `If you didn't change this password, please contact us immediately.\n\n` +
         `Best regards,\n` +
         `The DiagnoseWizard Team`;
 
@@ -91,14 +89,10 @@ exports.SendMail = async (email, UserName, template) => {
                 <tr>
                   <td>
                     <p style="font-size: 18px; color: #333333;">Hello ${UserName},</p>
-                    <p style="font-size: 16px; color: #666666;">You have requested a password reset for your DiagnoseWizard
+                    <p style="font-size: 16px; color: #666666;">You have changed your password for your DiagnoseWizard account.
                       account.</p>
-                    <p style="font-size: 20px; color: #333333;">OTP for Temporary Password: <strong>${otp}</strong></p>
-                    <p style="font-size: 16px; color: #666666;">Please change your password after logging in for security
-                      reasons.</p>
-                    <p style="font-size: 16px; color: #666666;">If you didn't request this password reset, please contact us
-                      immediately.</p>
-                    <p style="font-size: 16px; color: #666666;">For additional security, this OTP will expire in 5 minutes.</p>
+                   
+                    <p style="font-size: 16px; color: #666666;">If you didn't change this password, please contact us immediately.</p>
                   </td>
                 </tr>
                 <tr>
@@ -273,7 +267,7 @@ exports.SendMail = async (email, UserName, template) => {
     }
 
     const mailOptions = {
-      from: `'DiagnoseWizard || by SHISHIRO' <${process.env.USER}>`,
+      from: `'DiagnoseWizard' <${process.env.USER}>`,
       to: email,
       subject,
       text,
@@ -288,3 +282,5 @@ exports.SendMail = async (email, UserName, template) => {
     return error;
   }
 };
+
+module.exports= SendMail;

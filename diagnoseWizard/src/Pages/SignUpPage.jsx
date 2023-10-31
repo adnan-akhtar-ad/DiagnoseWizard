@@ -90,6 +90,7 @@ const SignUpPage = () => {
                     value={email}
                     onChange={handleEmailChange}
                     className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />
+                    
 
                 <input
                     type="password"

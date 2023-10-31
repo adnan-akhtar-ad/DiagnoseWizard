@@ -1,6 +1,7 @@
 const express = require("express");
 const userController = require('./../Controllers/userController');
 const authController = require('./../Controllers/authController');
+const passwordController=require('./../Controllers/passwordController');
 const router = express.Router();
 const fs = require("fs");
 
@@ -10,10 +11,10 @@ app.use(express.json());
 app.use(morgan("dev"));
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
-router.post('/forgotPassword',authController.forgotPassword);
+router.post('/forgotPassword',passwordController.forgotPassword);
 router.route("/").get(userController.getAllUsers).post(userController.createUser);
 
 router.route("/:id").get(userController.getUniqueUser).delete(userController.deleteUser);
-router.route("/:iv/:encryptedData").patch(userController.updateUser)
+router.route("/:iv/:encryptedData").patch(passwordController.updatePassword);
 
 module.exports = router;

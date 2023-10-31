@@ -38,8 +38,10 @@ const Navbar = (props) => {
                     <li className="mr-[25px]"><Link to="/" onClick={() => scrollDown(props.ServicesPageSection)}>Diagnoses</Link></li>
                     <li className="mr-[25px]"><Link to="/" >Doctors</Link></li>
                     <li className="mr-[25px]"><Link to="/" onClick={() => scrollDown(props.ConnectWithUsSection)}>Contact Us</Link></li>
-                    {(!jwt) && <li className="mr-[25px]"><a href="/login">Login</a></li>}
-                    {(!jwt) && <li className="mr-[25px]"><a href="/signup">Sign Up</a></li>}
+                    {(!jwt) && <li className="mr-[25px]"><Link to="/login">Login</Link></li>}
+                    {(!jwt) && <li className="mr-[25px]"><Link to="/signup">Sign Up</Link></li>}
+                    {(jwt) && <li className="mr-[25px]"><Link to="/changePass">Change Password</Link></li>}
+
                     {(jwt) && <button className="mr-[25px] shadow-lg rounded-lg translate-y-[-5px]  bg-[#18A0A9] text-[#FFFFFF] font-medium p-[5px]" onClick={handleLogout}><a href="/login">Logout</a></button>}
 
                 </ul>

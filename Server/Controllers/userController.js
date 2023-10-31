@@ -1,6 +1,6 @@
 const User = require("../Models/userModel");
 const bcrypt = require('bcryptjs');
-const Cryption = require("../utils/Cryption");
+
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -40,40 +40,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.updateUser = async (req, res) => {
-  try {
-    const text =
-    {
-      "iv": req.params.iv,
-      "encryptedData": req.params.encryptedData
-    }
 
-    const user_id = Cryption.decrypt(text);
-
-
-    const newPassword = await bcrypt.hash(req.body.password, 12);
-
-    const user = await User.findByIdAndUpdate(user_id, { "password": newPassword, "passwordConfirm": newPassword }, {
-      new: true,
-      runValidators: true,
-
-    });
-    console.log(user);
-    res.status(200).json({
-      status: "success",
-      data: {
-        user,
-      }
-    })
-  } catch (err) {
-    console.log("unable to update password");
-    res.status(400).json({
-      status: "error",
-      message: err,
-    });
-
-  }
-};
 
 exports.getUniqueUser = async (req, res) => {
   try {

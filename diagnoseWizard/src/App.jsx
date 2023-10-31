@@ -5,11 +5,13 @@ import Navbar from './Components/Navbar'
 import Hero from './Pages/Hero'
 import LoginPage from './Pages/LoginPage'
 import SignUpPage from './Pages/SignUpPage'
+import ChangePassword from './Pages/ChangePassword'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from 'react-router-dom'
 import { useRef } from 'react'
 import PageNotFound from './Pages/PageNotFound'
+
 function App() {
   const HomeSection = useRef(null);
   const AboutSection = useRef(null);
@@ -57,6 +59,8 @@ function App() {
             />} />
         {!jwt && <Route path='/login' element={<LoginPage />} />}
         {!jwt && <Route path='/signup' element={<SignUpPage />} />}
+        {jwt && <Route path='/changePass' element={<ChangePassword />} />}
+
         <Route path='*' element={<PageNotFound />} />
       </Routes>
 

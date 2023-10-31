@@ -33,9 +33,9 @@ const ForgetPassword = () => {
             }
             if (!response.ok) {
                 console.log("The status code :", response.status)
-                console.log("signup failed");
+                console.log("password changing failed");
                 if (response.status === 401) {
-                    console.log("passwords doenst match")
+                    console.log("passwords doesn't match")
                 }
                 const errorData = await response.json();
                 throw new Error(errorData.error);
@@ -80,7 +80,7 @@ const ForgetPassword = () => {
                     className="w-[400px] h-[50px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px] "
                     onClick={handleChangePassword}
                 >Change Password</button>
-                <div className='mt-[10px]'>Don' want to change password? <a href="#" className='text-[#3b82f6] hover:underline'>Go to Home</a></div>
+                <div className='mt-[10px]'>Don't want to change password? <a href="#" className='text-[#3b82f6] hover:underline'>Go to Home</a></div>
             </div>
 
         </section>
