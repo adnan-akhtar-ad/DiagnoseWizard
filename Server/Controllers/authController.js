@@ -19,12 +19,14 @@ exports.signup=catchAsync(async(req,res,next)=>{
         passwordConfirm: req.body.passwordConfirm
     });
     const token=signToken(newUser._id);
+    const {iv,encryptedData}= Cryption.encrypt(newUser._id.toString());
 
     res.status(201).json({
         status: 'success',
         token,
         data:{
-            user:newUser
+            user:newUser,
+            "encryptedData":  encryptedData
         }
     })
 })
@@ -41,11 +43,12 @@ exports.login = catchAsync(async (req, res, next) => {
         return next(new AppError('Incorrect email or password', 401));
     }
     const token = signToken(user._id);
-
+const {iv,encryptedData}= Cryption.encrypt(user._id.toString());
     res.status(200).json({
         status: 'success',
         token,
-        data:  Cryption.encrypt(user._id.toString()) // Convert ObjectId to string
+        data: {
+        "encryptedData":  encryptedData }// Convert ObjectId to string
         
     });
 });

@@ -13,10 +13,9 @@ app.use(morgan("dev"));
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.post('/forgotPassword',passwordController.forgotPassword);
-router.post('/sendMessage',ContactUsController.SendMessage);
-router.route("/").get(userController.getAllUsers).post(userController.createUser);
-
+router.post('/sendMessage/:encryptedData',ContactUsController.SendMessage);
+router.get('/getAllMessages',ContactUsController.GetAllMessages)
 router.route("/:id").get(userController.getUniqueUser).delete(userController.deleteUser);
-router.route("/:iv/:encryptedData").patch(passwordController.updatePassword);
+router.route("/:encryptedData").patch(passwordController.updatePassword);
 
 module.exports = router;

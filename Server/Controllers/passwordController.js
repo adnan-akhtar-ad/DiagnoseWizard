@@ -5,10 +5,14 @@ const bcrypt = require('bcryptjs');
 const SendMail = require('./../utils/SendMail');
 const User = require('./../Models/userModel');
 const generateOTP=require('./../utils/generateOTP');
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+
+
 exports.updatePassword = catchAsync(async (req, res) => {
     try {
         const text = {
-            "iv": req.params.iv,
+            "iv": Buffer.from(process.env.IV, 'hex'),
             "encryptedData": req.params.encryptedData
         }
 

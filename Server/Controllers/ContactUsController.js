@@ -1,10 +1,23 @@
 const catchAsync = require("../utils/catchAsync");
 const Message=require('../Models/reviewModel');
+const User = require('../Models/userModel');
+const Cryption = require('../utils/Cryption');
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+
+
 exports.SendMessage=catchAsync(async(req,res)=>{
+    const text = {
+        "iv": Buffer.from(process.env.IV, 'hex'),
+        "encryptedData": req.params.encryptedData
+    }
+    const user_id = Cryption.decrypt(text);
+    const userDetails = await User.findById(user_id);
+
     const newReview =await Message.create({
-        userId:req.body.userId,
+        userId:user_id,
         name: req.body.name,
-        email: req.body.email,
+        email: userDetails.email,
         message:req.body.message,
 
     });
@@ -15,4 +28,8 @@ exports.SendMessage=catchAsync(async(req,res)=>{
             review:newReview
         }
     })
+})
+
+exports.GetAllMessages=catchAsync(async(req,res)=>{
+    
 })

@@ -1,26 +1,101 @@
+import { useState } from "react";
+import {useNavigate } from "react-router-dom";
+
 const ConnectWithUs = (props) => {
-    
+    const navigate = useNavigate();
+
+    const navigateTo = (address) => {
+        navigate(address);
+    };
+    const encryptedData = sessionStorage.getItem('encryptedData');
+    const jwt=sessionStorage.getItem('jwt');
+    const [name, setName] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleMessageChange = (e) => {
+        setMessage(e.target.value);
+    }
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    }
+    const handleSendMessage=async (e)=>{
+      if(!jwt){
+        navigateTo('/login');
+      }else{
+        e.preventDefault();
+        try{
+            const response = await fetch(`http://localhost:3000/sendMessage/${encryptedData}`, {
+                method: 'POST',
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+
+                    "name":name,
+                    "message":message
+                }),
+            })
+            
+            if (response.ok) {
+                console.log("Message sent successfully!");
+
+            }
+            if (!response.ok) {
+                console.log("The status code :", response.status)
+                console.log("message sending failed");
+                if (response.status === 401) {
+                    console.log("passwords doesn't match")
+                }
+                const errorData = await response.json();
+                throw new Error(errorData.error);
+
+
+            }
+
+        }catch(err){
+            console.error(`Error sending the message`, err.message);
+
+        }
+        setName("");
+        setMessage("");
+
+      }
+    }
     return (
         <section className="py-[100px]" id="ConnectWithUs" ref={props.ConnectWithUsSection}>
-           <div className="flex text-start justify-between">
-           <div className="w-[464px]">
-                <p className="font-bold text-[12px] font-bold text-[#09A4AD]">
-                    Connect With Us
-                </p>
-                <h1 className="font-bold text-[40px] mb-[40px]">
-                 Connect with DiagnoseWizard, Take a step towards prevention
-                </h1>
-                <p className="font-medium text-[20px]">
-                    Far far away, behind the word mountains, far from the countries Waganda and Asgard.
-                </p>
+            <div className="flex text-start justify-between">
+                <div className="w-[464px]">
+                    <p className="font-bold text-[12px] font-bold text-[#09A4AD]">
+                        Connect With Us
+                    </p>
+                    <h1 className="font-bold text-[40px] mb-[40px]">
+                        Connect with DiagnoseWizard, Take a step towards prevention
+                    </h1>
+                    <p className="font-medium text-[20px]">
+                        Far far away, behind the word mountains, far from the countries Waganda and Asgard.
+                    </p>
+                </div>
+                <div className=" w-[475px] shadow-lg px-[35px] py-[20px] rounded-lg">
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={handleNameChange}
+                        className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />
+
+
+                    <input
+                        type="text"
+                        placeholder="Message"
+                        value={message}
+                        onChange={handleMessageChange}
+                        className="w-[400px] h-[150px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />
+                    <button 
+                    onClick={handleSendMessage}
+                    className="w-[400px] h-[50px] bg-[#18A0A9] text-[#FFFFFF] rounded-xl my-[10px] ">Submit Now</button>
+                </div>
             </div>
-            <div className=" w-[475px] shadow-lg px-[35px] py-[20px] rounded-lg">
-                <input type="text" placeholder="Name" className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"/>
-      
-                <input type="text" placeholder="Message" className="w-[400px] h-[150px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />
-                <button className="w-[400px] h-[50px] bg-[#18A0A9] text-[#FFFFFF] rounded-xl my-[10px] ">Submit Now</button>
-            </div>
-           </div>
         </section>
     );
 }

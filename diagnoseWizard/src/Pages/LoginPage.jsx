@@ -35,7 +35,7 @@ const LoginPage = () => {
       if(data.status==='success'){
       
         sessionStorage.setItem("jwt",data.token);
-        sessionStorage.setItem("iv",data.data.iv);
+       
         sessionStorage.setItem("encryptedData",data.data.encryptedData);
         navigateTo('/');
     

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ForgetPassword = () => {
+const ChangePassword = () => {
     const iv=sessionStorage.getItem('iv');
     const encryptedData=sessionStorage.getItem('encryptedData');
     const [password, setPassword] = useState("");
@@ -87,4 +87,4 @@ const ForgetPassword = () => {
     );
 }
 
-export default ForgetPassword;
+export default ChangePassword;

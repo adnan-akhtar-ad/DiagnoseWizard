@@ -43,7 +43,6 @@ const SignUpPage = () => {
             if (data.status==='success') {
                 console.log("signed in");
                 sessionStorage.setItem("jwt", data.token);
-                sessionStorage.setItem("iv", data.data.iv);
                 sessionStorage.setItem("encryptedData", data.data.encryptedData);
                 navigateTo('/');
             }
@@ -51,7 +50,7 @@ const SignUpPage = () => {
                 console.log("The status code :", response.status)
                 console.log("signup failed");
                 if (response.status === 401) {
-                    console.log("passwords doenst match")
+                    console.log("passwords doesn't match")
                 }
                 const errorData = await response.json();
                 throw new Error(errorData.error);
