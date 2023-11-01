@@ -264,6 +264,49 @@ const SendMail = async (email,otp,UserName, template) => {
           </table>
         </body>
       </html>`;
+    }else if (template === "feedback") {
+      subject = "Thank you for your valuable feedback";
+      text =
+        `Hello ${UserName},\n\n` +
+        `thanks for giving your valuable feedback\n`+
+        `our team will keep on improving our work and services for you\n`+
+        `Best regards,\n` +
+        `The DiagnoseWizard Team`;
+
+      html = `
+      <html>
+        <body style="font-family: Arial, sans-serif; background-color: #f2f2f2; margin: 0; padding: 0;">
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
+            style="max-width: 600px; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 30px auto; border-radius: 5px;">
+            <tr>
+              <td style="padding: 30px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td>
+                      <div style="text-align: center;">
+                        <h1 style="color: rgb(8, 32, 169); user-select: none;">DiagnoseWizard</h1>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="font-size: 18px; color: #333333;">Hello ${UserName},</p>
+                      <p style="font-size: 16px; color: #666666;">thanks for giving your valuable feedback.</p>
+                      <p style="font-size: 16px; color: #666666;">our team will keep on improving our work and services for you</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p style="font-size: 16px; color: #666666; margin-top: 20px;">Best regards,</p>
+                      <p style="font-size: 16px; color: #333333; font-weight: bold;">The DiagnoseWizard Team</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </body>
+      </html>`;
     }
 
     const mailOptions = {
