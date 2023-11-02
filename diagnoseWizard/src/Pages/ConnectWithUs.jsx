@@ -1,7 +1,10 @@
 import { useState } from "react";
 import {useNavigate } from "react-router-dom";
 
+
 const ConnectWithUs = (props) => {
+  
+
     const navigate = useNavigate();
 
     const navigateTo = (address) => {
@@ -81,6 +84,7 @@ const ConnectWithUs = (props) => {
                         type="text"
                         placeholder="Name"
                         value={name}
+                        ref={props.MessageNameSection}
                         onChange={handleNameChange}
                         className="w-[400px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />
 

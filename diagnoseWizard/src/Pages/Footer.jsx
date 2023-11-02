@@ -65,7 +65,9 @@ const Footer = (props) => {
         },
     ]);
 
-
+const handleFocus=()=>{
+    props.MessageNameSection.current.focus();
+}
 
     return (
         <section className="bg-[#18A0A9] text-[#FFFFFF]  py-[100px] !w-[100%]" id="Footer" ref={props.FooterSection}> 
@@ -73,7 +75,7 @@ const Footer = (props) => {
                 <div className="flex flex-col">
                       <span className="flex  mb-[10px] font-semibold text-[24px]"> <img src="assets/healthcare 1(1).svg" alt="" className="mr-[18px]" />DiagnoseWizard</span>
                     <button className="flex border-[1px] border-[#FFFFFF] p-[10px] rounded-xl py-[15px] my-[10px]"><img src="/assets/Vector(17).svg" alt="" className="mr-[18px] "/>Take an appointment</button>
-                    <button className="flex border-[1px] border-[#FFFFFF] p-[10px] rounded-xl py-[15px] my-[10px]" ><img src="assets/mail_FILL0_wght200_GRAD0_opsz24.svg" alt="" className="mr-[18px] text-[#FFFFFF] w-[18px] " />Mail us</button>
+                    <button className="flex border-[1px] border-[#FFFFFF] p-[10px] rounded-xl py-[15px] my-[10px] " onClick={handleFocus} ><img src="assets/mail_FILL0_wght200_GRAD0_opsz24.svg" alt="" className="mr-[18px] text-[#FFFFFF] w-[18px] " />Message us</button>
                 </div>
                 <div>
                     <p className="font-semibold text-[20px]" >DIAGNOSES</p>
