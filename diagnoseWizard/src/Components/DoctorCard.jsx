@@ -1,7 +1,21 @@
+import { useState } from "react";
+import { useEffect } from "react";
 const DoctorCard = (props) => {
+    const jwt=sessionStorage.getItem('jwt');
+    const [direction,setDirection]=useState(false);
+    const handleGoToHospital=()=>{
+           if(jwt){
+            setDirection(true);
+           }else{
+            setDirection(false);
+           }
+    }
+
+    useEffect(() => { handleGoToHospital }, [jwt]);
+
     return (
-        <div >
-            <div className="text-start w-[408px] h-[306px] overflow-hidden">
+        <div className="h-[306px] mb-[30px]">
+            <div className="text-start w-[408px] h-[306px] overflow-hidden ">
                 <img src={props.imageSrc} alt="hospital image" id="doctorCard" />
 
             </div>
@@ -24,8 +38,8 @@ const DoctorCard = (props) => {
                         </div>
                     </div>
                     <div className="text-center bg-[#00A0AA] text-[#FFFFFF] font-bold mt-[10px] border-t-[1px] ">
-                        <a href={props.directions} target="_blank">
-                            <button className="text-[18px] font-semibold my-[10px] w-[408] " id="doctorCard" >
+                        <a href={direction && props.directions} target="_blank">
+                            <button className="text-[18px] font-semibold my-[10px] w-[408] " id="doctorCard" onClick={handleGoToHospital} >
                                 Go To Hospital
                             </button>
                         </a>

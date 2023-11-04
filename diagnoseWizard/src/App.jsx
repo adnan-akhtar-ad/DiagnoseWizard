@@ -57,7 +57,7 @@ function App() {
               ConnectWithUsSection={ConnectWithUsSection}
               FooterSection={FooterSection}
             />} />
-        <Route path='/doctors' element={<Doctors />} />
+        <Route path='/hospitals' element={<Doctors />} />
         {!jwt && <Route path='/login' element={<LoginPage />} />}
         {!jwt && <Route path='/signup' element={<SignUpPage />} />}
         {jwt && <Route path='/changePass' element={<ChangePassword />} />}

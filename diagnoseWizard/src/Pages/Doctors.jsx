@@ -116,7 +116,7 @@ const Doctors = () => {
         ]);
     
     return (
-        <section>
+        <section className="my-[100px]">
 <div  id="doctor-container">
     {
         doctors.map((details,index)=>{

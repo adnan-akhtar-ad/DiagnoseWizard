@@ -1,8 +1,15 @@
 import { useState } from "react";
 import WhyChooseUsPoint from "../Components/WhyChooseUsPoint";
 import TypeWriter from "../Components/TypeWriter";
+import {useNavigate } from "react-router-dom";
 
 const WhyChooseUs = (props) => {
+    const navigate = useNavigate();
+
+    const navigateToHospitals = () => {
+        navigate("/hospitals");
+   
+    };
     const [points, setPoints] = useState
         ([
             {
@@ -59,7 +66,7 @@ const WhyChooseUs = (props) => {
                     <p className="font-medium text-[20px] text-start mb-[45px]">
                         They live in Bookmarks grove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it.
                     </p>
-                    <button className="bg-[#00A0AA] font-bold text-[20px] text-[#FFFFFF] p-[15px] rounded-xl">
+                    <button className="bg-[#00A0AA] font-bold text-[20px] text-[#FFFFFF] p-[15px] rounded-xl" onClick={navigateToHospitals}>
                         Take An Appointment
                     </button>
                 </div>
