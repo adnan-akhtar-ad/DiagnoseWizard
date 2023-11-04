@@ -36,7 +36,7 @@ const Navbar = (props) => {
                     <li className="mr-[25px]"><Link to="/" >Home</Link></li>
                     <li className="mr-[25px]"><Link to="/" onClick={() => scrollDown(props.AboutSection)}>About</Link></li>
                     <li className="mr-[25px]"><Link to="/" onClick={() => scrollDown(props.ServicesPageSection)}>Diagnoses</Link></li>
-                    <li className="mr-[25px]"><Link to="/" >Doctors</Link></li>
+                    <li className="mr-[25px]"><Link to="/doctors" >Doctors</Link></li>
                     <li className="mr-[25px]"><Link to="/" onClick={() => scrollDown(props.ConnectWithUsSection)}>Contact Us</Link></li>
                     {(!jwt) && <li className="mr-[25px]"><Link to="/login">Login</Link></li>}
                     {(!jwt) && <li className="mr-[25px]"><Link to="/signup">Sign Up</Link></li>}

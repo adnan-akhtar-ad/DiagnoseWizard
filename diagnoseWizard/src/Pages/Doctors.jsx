@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import DoctorCard from "../Components/DoctorCard";
 const Doctors = () => {
     const [doctors, setDoctors] = useState
         ([
@@ -114,9 +114,16 @@ const Doctors = () => {
             }
 
         ]);
+    
     return (
         <section>
-
+<div  id="doctor-container">
+    {
+        doctors.map((details,index)=>{
+return(<DoctorCard key={index} name={details.name} rating={details.rating} imageSrc={details.imageSrc} website={details.website} directions={details.directions} phoneNumber={details.phoneNumber}/>)
+        })
+    }
+</div>
         </section>
     );
 }
