@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useNavigate } from "react-router-dom";
-
+import { ToastContainer,toast } from 'react-toastify';
 
 const ConnectWithUs = (props) => {
   
@@ -23,6 +23,7 @@ const ConnectWithUs = (props) => {
     }
     const handleSendMessage=async (e)=>{
       if(!jwt){
+        toast.error("Please login to send us a message!!");
         navigateTo('/login');
       }else{
         e.preventDefault();
@@ -41,8 +42,11 @@ const ConnectWithUs = (props) => {
             })
             
             if (response.ok) {
+                toast.success("Thanks for your message!!")
                 console.log("Message sent successfully!");
-
+                setName("");
+                setMessage("");
+                 
             }
             if (!response.ok) {
                 console.log("The status code :", response.status)
@@ -60,8 +64,7 @@ const ConnectWithUs = (props) => {
             console.error(`Error sending the message`, err.message);
 
         }
-        setName("");
-        setMessage("");
+    
 
       }
     }

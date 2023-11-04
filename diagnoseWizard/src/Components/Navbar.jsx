@@ -12,7 +12,7 @@ const Navbar = (props) => {
     const iv=sessionStorage.getItem("iv");
     const encryptedData=sessionStorage.getItem("encryptedData");
     const handleLogout = () => {
-       
+    
         sessionStorage.clear("jwt");
         sessionStorage.clear("iv");
         sessionStorage.clear("encryptedData");

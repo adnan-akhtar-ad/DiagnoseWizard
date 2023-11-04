@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { ToastContainer,toast } from 'react-toastify';
 const DoctorCard = (props) => {
     const jwt=sessionStorage.getItem('jwt');
     const [direction,setDirection]=useState(false);
@@ -7,6 +8,7 @@ const DoctorCard = (props) => {
            if(jwt){
             setDirection(true);
            }else{
+            toast.error("Please login to use all the functions!!")
             setDirection(false);
            }
     }
@@ -25,9 +27,11 @@ const DoctorCard = (props) => {
                         <h3 className="text-[20px] font-semibold ml-[15px] mt-[15px]">
                            {props.name}
                         </h3>
-                        <a href={props.website} className="">
+                        <button onClick={handleGoToHospital}>
+                        <a href={direction && props.website} className="">
                         <img src="assets/hospital_web.svg" alt=""  className="w-[20px] mr-[5px] mt-[20px]"/>
                         </a>
+                        </button>
                     </div>
                     <div className="flex justify-between mx-[15px] mt-[5px]">
                         <p ><span className="text-[#FFC567] font-bold mr-[2px]">{props.rating}</span>/5 </p>

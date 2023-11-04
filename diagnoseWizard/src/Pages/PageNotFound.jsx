@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { ToastContainer,toast } from 'react-toastify';
 
 const PageNotFound = () => {
     const navigate = useNavigate();
@@ -7,6 +8,7 @@ const PageNotFound = () => {
         navigate(address);
     };
     const toHome = () => {
+        toast.success("Welcome back!!")
         navigateTo('/');
     }
     return (

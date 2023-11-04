@@ -2,6 +2,7 @@ import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router-dom";
 import {useNavigate } from "react-router-dom";
+import { ToastContainer,toast } from 'react-toastify';
 const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -38,29 +39,35 @@ const LoginPage = () => {
        
         sessionStorage.setItem("encryptedData",data.data.encryptedData);
         navigateTo('/');
+        window.location.reload();
+        setEmail("");
+        setPassword("");
     
       }
       if (!response.ok) {
+        toast.error("Login Failed");
+
         console.log("The status code :", response.status)
         console.log("login failed");
         if (response.status === 401) {
           console.log("Invalid Credentials")
+          toast.error("Wrong Email or Password");
+
         }
         const errorData = await response.json();
         throw new Error(errorData.error);
 
 
       }
-      window.location.reload();
+     
     } catch (err) {
       console.error(`Error logging the user`, err.message);
     }
-    setEmail("");
-    setPassword("");
 
   }
   return (
     <section className="flex justify-between my-[100px] py-[100px]" id="LoginPage">
+      
       <div>
         <img src="assets/undraw_medicine_b-1-ol.svg" className="h-[400px] " alt="" />
       </div>
