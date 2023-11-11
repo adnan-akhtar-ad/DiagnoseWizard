@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { ToastContainer,toast } from 'react-toastify';
+import {useNavigate } from "react-router-dom";
+
 const DoctorCard = (props) => {
+    const navigate = useNavigate();
+
+    const navigateToLogin = () => {
+         navigate("/login");
+     };
     const jwt=sessionStorage.getItem('jwt');
     const [direction,setDirection]=useState(false);
     const handleGoToHospital=()=>{
            if(jwt){
             setDirection(true);
            }else{
+            navigateToLogin();
             toast.error("Please login to use all the functions!!")
             setDirection(false);
            }

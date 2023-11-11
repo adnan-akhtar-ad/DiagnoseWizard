@@ -12,7 +12,7 @@ import { Route, Routes } from 'react-router-dom'
 import { useRef } from 'react';
 import PageNotFound from './Pages/PageNotFound';
 import Doctors from './Pages/Doctors';
-import DropdownForm from './Pages/DropdownForm';
+import DiagnosesPage from './Pages/DiagnosesPage';
 
 function App() {
   const HomeSection = useRef(null);
@@ -60,7 +60,7 @@ function App() {
               FooterSection={FooterSection}
             />} />
         <Route path='/hospitals' element={<Doctors />} />
-        <Route path='/dropdown' element={<DropdownForm />} />
+        <Route path='/diagnoses' element={<DiagnosesPage />} />
         {!jwt && <Route path='/login' element={<LoginPage />} />}
         {!jwt && <Route path='/signup' element={<SignUpPage />} />}
         {jwt && <Route path='/changePass' element={<ChangePassword />} />}

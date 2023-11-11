@@ -10,6 +10,7 @@ const TypeWriter = (props) => {
         typeSpeed={90}
         deleteSpeed={50}
         delaySpeed={1000}
+        cursorColor='#18A0A9'
       /> );
 }
  
