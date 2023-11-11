@@ -12,7 +12,9 @@ class DropdownForm extends Component {
     handleDropdownChange = (event) => {
         this.setState({ selectedOption: event.target.value });
     };
-
+    handleDiabetesDiagnosis=()=>{
+      
+    }
     renderForm() {
         const { selectedOption } = this.state;
 
@@ -61,7 +63,8 @@ class DropdownForm extends Component {
                 );
             case 'Diabetes':
                 return (
-                    <form action='/diagnose_Diabetes' method='POST'>
+                   <div>
+                     <form action='/diagnose_Diabetes' >
                         <div >
                             <input type="text" placeholder='Pregnancies'  className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"/>
                             <input type="text" placeholder='Glucose'  className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"/>
@@ -78,8 +81,11 @@ class DropdownForm extends Component {
                             <input type="text" placeholder='DiabetesPedigreeFunction'  className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]" />
                             <input type="text" placeholder='Age' className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"/>
                         </div>
-                        <button className="w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit'>Diagnose</button>
+                        <button className="w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleDiabetesDiagnosis}>Diagnose</button>
                     </form>
+                
+                   </div>
+
                 );
             case 'Parkinsons':
                 return (
