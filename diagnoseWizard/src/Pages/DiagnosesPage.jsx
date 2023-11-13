@@ -181,6 +181,7 @@ const DropdownForm = () => {
     const [pneumoniaImage, setPneumoniaImage] = useState('');
     const handlePneumoniaInputChange = (e) => {
         setPneumoniaImage(e.target.files[0]);
+        setVisibility("font-bold text-[30px] hidden");
     }
 
     const handlePneumoniaFormChange = async (e) => {
@@ -237,9 +238,10 @@ const DropdownForm = () => {
     
       const handleBreastCancerInputChange = (e, fieldName) => {
         setBreastCancerFormData({
-          ...formData,
+          ...breastCancerFormData,
           [fieldName]: e.target.value,
         });
+        setVisibility("font-bold text-[30px] hidden");
       };
 
       const handleBreastCancerFormChange = async (e) => {
@@ -484,7 +486,7 @@ const DropdownForm = () => {
                         </form>
                         <div>
                             <h3 className={visibility}>
-                                The probability of you having Thyroid is  <span className={probColour}>{prob}</span>!!
+                                The probability of you having Breast Cancer is  <span className={probColour}>{prob}</span>!!
                             </h3>
                         </div>
                     </div>
