@@ -1,24 +1,25 @@
 import { useState } from "react";
 import TypeWriter from "../Components/TypeWriter";
-import { ToastContainer,toast } from 'react-toastify';
-import {useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 const ForgotPassword = () => {
 
     const navigate = useNavigate();
     const navigateToChangePassword = () => {
-         navigate("/changePass");
-     };
-    const [userEmail,setUserEmail]=useState('');
-    const [otp,setOtp]=useState('');
-    const [userOtp,setUserOtp]=useState('');
-    const [visibility,setVisibility]=useState('');
-    const handleUserEmailChange=(e)=>{
+        navigate("/changePass");
+    };
+    const [userEmail, setUserEmail] = useState('');
+    const [otp, setOtp] = useState('');
+    const [userOtp, setUserOtp] = useState('');
+    const [otpVisibility, setOtpVisibility] = useState('hidden');
+    const [emailVisibility, setEmailVisibility] = useState('block my-[20px]');
+    const handleUserEmailChange = (e) => {
         setUserEmail(e.target.value);
     }
-    const handleUserOtpChange=(e)=>{
+    const handleUserOtpChange = (e) => {
         setUserOtp(e.target.value);
     }
-    const handleGetOtp=async (e)=>{
+    const handleGetOtp = async (e) => {
         e.preventDefault();
         try {
             const response = await fetch(`http://localhost:3000/forgotPassword`, {
@@ -27,38 +28,42 @@ const ForgotPassword = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({  
+                body: JSON.stringify({
                     "email": userEmail,
-                    }),
+                }),
             })
             const data = await response.json();
-            if (data.status==='success') {
+            if (data.status === 'success') {
                 toast.success("OTP sent successfully!!");
+                setOtpVisibility('block my-[20px]');
+                setEmailVisibility('hidden');
                 setOtp(data.data.otp);
                 sessionStorage.setItem("encryptedData", data.data.user_id.encryptedData);
             }
             if (!response.ok) {
                 console.log("The status code :", response.status)
-                
+
                 const errorData = await response.json();
                 throw new Error(errorData.error);
 
 
             }
 
-          
+
         } catch (err) {
             console.error(`Error signing in the user`, err.message);
 
         }
-       
+
     }
-    const handleVerifyOtp=()=>{
-          if(otp==userOtp){
+    const handleVerifyOtp = () => {
+        if (otp == userOtp) {
+            setOtpVisibility('hidden');
+            setEmailVisibility('block my-[20px]');
             navigateToChangePassword();
-          }else{
+        } else {
             toast.error("Otps didnt match,Try again!!");
-          }
+        }
     }
     return (
         <section>
@@ -72,7 +77,7 @@ const ForgotPassword = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className={emailVisibility}>
                     <input
                         type="text"
                         placeholder="email"
@@ -81,13 +86,14 @@ const ForgotPassword = () => {
                         onChange={handleUserEmailChange}
 
                     />
-                </div>
-                <button
-                    className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-lg my-[10px]"
-                    type="submit"
-                    onClick={handleGetOtp}
+                    <button
+                        className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-lg my-[10px] block"
+                        type="submit"
+                        onClick={handleGetOtp}
                     >Get OTP</button>
-                <div>
+                </div>
+
+                <div className={otpVisibility}>
                     <input
                         type="text"
                         placeholder="otp"
@@ -96,14 +102,15 @@ const ForgotPassword = () => {
                         value={userOtp}
 
                     />
-                </div>
-                <button
-                    className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-lg my-[10px]"
-                    type="submit"
-                    onClick={handleVerifyOtp}
+                    <button
+                        className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-lg my-[10px] block"
+                        type="submit"
+                        onClick={handleVerifyOtp}
                     >Verify OTP</button>
-                
-                
+                </div>
+
+
+
             </div>
         </section>
     );

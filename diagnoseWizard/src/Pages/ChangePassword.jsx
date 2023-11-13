@@ -1,8 +1,14 @@
 import { useState } from "react";
+import { ToastContainer,toast } from 'react-toastify';
+import {useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
-    const iv=sessionStorage.getItem('iv');
     const encryptedData=sessionStorage.getItem('encryptedData');
+    const navigate = useNavigate();
+
+    const navigateToLogin = () => {
+         navigate("/login");
+     };
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const handlePasswordChange = (e) => {
@@ -14,7 +20,7 @@ const ChangePassword = () => {
     const handleChangePassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3000/${iv}/${encryptedData}`, {
+            const response = await fetch(`http://localhost:3000/${encryptedData}`, {
                 method: 'PATCH',
                 credentials: "include",
                 headers: {
@@ -28,7 +34,10 @@ const ChangePassword = () => {
             })
 
             if (response.ok) {
-                console.log("password successfully changed");
+                
+                toast.success("password successfully changed!!\n Now login to continue!!");
+                sessionStorage.clear("encryptedData");
+                navigateToLogin();
 
             }
             if (!response.ok) {
@@ -43,7 +52,6 @@ const ChangePassword = () => {
 
             }
 
-            window.location.reload();
         } catch (err) {
             console.error(`Error changing the password`, err.message);
 
