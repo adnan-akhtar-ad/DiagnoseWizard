@@ -167,17 +167,13 @@ const DropdownForm = () => {
 
     //pneumonia states and request
     const [pneumoniaImage, setPneumoniaImage] = useState('');
-
     const handlePneumoniaInputChange = (e) => {
-        console.log(e.target.files);
         setPneumoniaImage(e.target.files[0]);
-        console.log(pneumoniaImage);
     }
 
     const handlePneumoniaFormChange = async (e) => {
         e.preventDefault();
         try {
-
             const formData = new FormData();
             formData.append('image', pneumoniaImage);
 
@@ -185,28 +181,24 @@ const DropdownForm = () => {
                 method: 'POST',
                 body: formData,
                 credentials: 'include',
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
-            const data = await response.json();
-            if (data.status === 'success') {
+            });
 
+            const data = await response.json();
+            // console.log(data)
+            if (data.status === 'success') {
                 setVisibility("font-bold text-[30px] flex");
                 setprob(data.probability);
                 setPneumoniaImage('');
-            }
-            if (data.status === 'failed') {
-                console.log("The status code :", data.status)
+            } else if (data.status === 'failed') {
+                console.log("The status code:", data.status);
                 console.log("diagnose failed");
             }
 
-
         } catch (err) {
             console.error(`Error diagnosing the user`, err.message);
-
         }
-    }
+    };
+
 
     //probability text colour
     useEffect(() => {

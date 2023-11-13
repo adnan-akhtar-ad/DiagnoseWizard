@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import pickle
 import numpy as np
+import cv2
 
 app = Flask(__name__)
 
@@ -55,11 +56,16 @@ def diagnose_Thyroid():
 @app.route('/diagnose_Pneumonia', methods=['POST'])
 def diagnose_Pneumonia():
     try:
-        data = request.get_json()
-        # int_features = [value for value in data.values()]
-        final = [np.array(data)]
-        prediction = pneumonia_model.predict_proba(final)
+        if 'image' not in request.files:
+            return jsonify({'error': 'No file part'})
+        image = request.files['image'].read()
+        nparr = np.frombuffer(image, np.uint8)
+        image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        image = cv2.resize(image, (150, 150))
+        image = np.expand_dims(image, axis=0)
+        prediction = pneumonia_model.predict(image)
         output = '{0:.{1}f}'.format(prediction[0][1], 2)
+        # print(output)
         return jsonify({'status':'success','probability': output})
     except Exception as e:
         return jsonify({'error': str(e)})
