@@ -69,14 +69,11 @@ const DropdownForm = () => {
                     age: '',
                 });
             }
-            if (!response.ok) {
-                console.log("The status code :", response.status)
+            if (data.status === 'failed') {
+                console.log("The status code :", data.status)
                 console.log("diagnose failed");
-                const errorData = await response.json();
-                throw new Error(errorData.error);
-
-
             }
+
 
 
         } catch (err) {
@@ -121,14 +118,17 @@ const DropdownForm = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    "Pregnancies": parseFloat(diabetesFormData.pregnancies),
-                    "Glucose": parseFloat(diabetesFormData.glucose),
-                    "BloodPressure": parseFloat(diabetesFormData.bloodPressure),
-                    "SkinThickness": parseFloat(diabetesFormData.skinThickness),
-                    "Insulin": parseFloat(diabetesFormData.insulin),
-                    "BMI": parseFloat(diabetesFormData.bmi),
-                    "DiabetesPedigreeFunction": parseFloat(diabetesFormData.diabetesPedigreeFunction),
-                    "Age": parseFloat(diabetesFormData.age)
+                    "age": parseFloat(thyroidFormData.age),
+                    "on thyroxine": parseFloat(thyroidFormData.on_thyroxine),
+                    "query on thyroxine": parseFloat(thyroidFormData.query_on_thyroxine),
+                    "on antithyroid medication": parseFloat(thyroidFormData.on_antithyroid_medication),
+                    "pregnant": parseFloat(thyroidFormData.pregnant),
+                    "thyroid surgery": parseFloat(thyroidFormData.thyroid_surgery),
+                    "tumor": parseFloat(thyroidFormData.tumor),
+                    "T3": parseFloat(thyroidFormData.T3),
+                    "TT4": parseFloat(thyroidFormData.TT4),
+                    "T4U": parseFloat(thyroidFormData.T4U),
+                    "FTI": parseFloat(thyroidFormData.FTI)
                 }),
             })
             const data = await response.json();
@@ -139,23 +139,22 @@ const DropdownForm = () => {
                 setprob(data.probability);
 
                 setDiabetesFormData({
-                    pregnancies: '',
-                    glucose: '',
-                    bloodPressure: '',
-                    skinThickness: '',
-                    insulin: '',
-                    bmi: '',
-                    diabetesPedigreeFunction: '',
                     age: '',
+                    on_thyroxine: '',
+                    query_on_thyroxine: '',
+                    on_antithyroid_medication: '',
+                    pregnant: '',
+                    thyroid_surgery: '',
+                    tumor: '',
+                    T3: '',
+                    TT4: '',
+                    T4U: '',
+                    FTI: '',
                 });
             }
-            if (!response.ok) {
-                console.log("The status code :", response.status)
+            if (data.status === 'failed') {
+                console.log("The status code :", data.status)
                 console.log("diagnose failed");
-                const errorData = await response.json();
-                throw new Error(errorData.error);
-
-
             }
 
 
@@ -307,17 +306,17 @@ const DropdownForm = () => {
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                 </div>
-                              <div>
-                              <input
+                                <div>
+                                    <input
                                         type="text"
                                         placeholder='FTI'
                                         value={thyroidFormData.FTI}
                                         onChange={(e) => handleThyroidInputChange(e, 'FTI')}
                                         className="w-[420px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
-                              </div>
+                                </div>
                             </div>
-                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleThyroidInputChange}>Diagnose Me</button>
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleThyroidFormChange}>Diagnose Me</button>
                         </form>
                         <div>
                             <h3 className={visibility}>
