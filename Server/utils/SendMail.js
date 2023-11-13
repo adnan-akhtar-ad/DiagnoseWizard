@@ -108,7 +108,54 @@ const SendMail = async (email,otp,UserName, template) => {
       </body>
       
       </html>`;
-    } else if (template === "deleteAccount") {
+    }else if (template === "forgotPassword") {
+      subject = "DiagnoseWizard-Otp to change your password!!";
+      text =
+        `Hello ${UserName} ,\n\n` +
+        `You have forgot your password for your DiagnoseWizard account.` +
+        `Your OTP to reset Password is ${otp}\n`+
+        `If you didn't do this , please contact us immediately.\n\n` +
+        `Best regards,\n` +
+        `The DiagnoseWizard Team`;
+
+      html = `<html>
+
+      <body style="font-family: Arial, sans-serif; background-color: #f2f2f2; margin: 0; padding: 0;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
+          style="max-width: 600px; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 30px auto;border-radius: 5px; ">
+          <tr>
+            <td style="padding: 30px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td>
+                    <div style="text-align: center;">
+                    <h1 style="color: rgb(8, 32, 169); user-select:none">DiagnoseWizard</h1>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p style="font-size: 18px; color: #333333;">Hello ${UserName},</p>
+                    <p style="font-size: 16px; color: #666666;">You have forgot your password for your DiagnoseWizard account</p>
+                    <p style="font-size: 16px; color: #666666;">Your OTP to reset Password is ${otp}</p>
+
+                    <p style="font-size: 16px; color: #666666;">If you didn't do this , please contact us immediately.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p style="font-size: 16px; color: #666666; margin-top: 20px;">Best regards,</p>
+                    <p style="font-size: 16px; color: #333333; font-weight: bold;">The DiagnoseWizard Team</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+      
+      </html>`;
+    }  else if (template === "deleteAccount") {
       subject = "Delete Account Requested";
       text =
         `Hello ${UserName},\n\n` +
