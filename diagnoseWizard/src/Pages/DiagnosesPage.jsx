@@ -52,9 +52,9 @@ const DropdownForm = () => {
                 }),
             })
             const data = await response.json();
-            console.log(data);
+            
             if (data.status === 'success') {
-                console.log("diagnosed");
+         
                 setVisibility("font-bold text-[30px] flex");
                 setprob(data.probability);
 
@@ -132,13 +132,13 @@ const DropdownForm = () => {
                 }),
             })
             const data = await response.json();
-            console.log(data);
+      
             if (data.status === 'success') {
-                console.log("diagnosed");
+            
                 setVisibility("font-bold text-[30px] flex");
                 setprob(data.probability);
 
-                setDiabetesFormData({
+                setThyroidFormData({
                     age: '',
                     on_thyroxine: '',
                     query_on_thyroxine: '',
