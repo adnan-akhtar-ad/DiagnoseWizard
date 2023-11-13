@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import DiagnosesHeading from '../Components/DiagnosesHeading';
 import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import { ToastContainer,toast } from 'react-toastify';
+
 const DropdownForm = () => {
+    const jwt = sessionStorage.getItem('jwt');
+    const navigate = useNavigate();
+    const navigateToLogin = () => {
+        navigate('/login');
+    };
+
     //common states
     const [prob, setprob] = useState("");
     const [probColour, setProbColour] = useState("ml-[10px] text-[#07f79f]");
@@ -44,54 +53,61 @@ const DropdownForm = () => {
     };
 
     const handleDiabetesFormChange = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/diagnose_Diabetes`, {
-                method: 'POST',
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    "Pregnancies": parseFloat(diabetesFormData.pregnancies),
-                    "Glucose": parseFloat(diabetesFormData.glucose),
-                    "BloodPressure": parseFloat(diabetesFormData.bloodPressure),
-                    "SkinThickness": parseFloat(diabetesFormData.skinThickness),
-                    "Insulin": parseFloat(diabetesFormData.insulin),
-                    "BMI": parseFloat(diabetesFormData.bmi),
-                    "DiabetesPedigreeFunction": parseFloat(diabetesFormData.diabetesPedigreeFunction),
-                    "Age": parseFloat(diabetesFormData.age)
-                }),
-            })
-            const data = await response.json();
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/diagnose_Diabetes`, {
+                    method: 'POST',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "Pregnancies": parseFloat(diabetesFormData.pregnancies),
+                        "Glucose": parseFloat(diabetesFormData.glucose),
+                        "BloodPressure": parseFloat(diabetesFormData.bloodPressure),
+                        "SkinThickness": parseFloat(diabetesFormData.skinThickness),
+                        "Insulin": parseFloat(diabetesFormData.insulin),
+                        "BMI": parseFloat(diabetesFormData.bmi),
+                        "DiabetesPedigreeFunction": parseFloat(diabetesFormData.diabetesPedigreeFunction),
+                        "Age": parseFloat(diabetesFormData.age)
+                    }),
+                })
+                const data = await response.json();
 
-            if (data.status === 'success') {
+                if (data.status === 'success') {
 
-                setVisibility("font-bold text-[30px] flex");
-                setprob(data.probability);
+                    setVisibility("font-bold text-[30px] flex");
+                    setprob(data.probability);
 
-                setDiabetesFormData({
-                    pregnancies: '',
-                    glucose: '',
-                    bloodPressure: '',
-                    skinThickness: '',
-                    insulin: '',
-                    bmi: '',
-                    diabetesPedigreeFunction: '',
-                    age: '',
-                });
+                    setDiabetesFormData({
+                        pregnancies: '',
+                        glucose: '',
+                        bloodPressure: '',
+                        skinThickness: '',
+                        insulin: '',
+                        bmi: '',
+                        diabetesPedigreeFunction: '',
+                        age: '',
+                    });
+                }
+                if (data.status === 'failed') {
+                    console.log("The status code :", data.status)
+                    console.log("diagnose failed");
+                }
+
+
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
+
             }
-            if (data.status === 'failed') {
-                console.log("The status code :", data.status)
-                console.log("diagnose failed");
-            }
-
-
-
-        } catch (err) {
-            console.error(`Error diagnosing the user`, err.message);
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
 
         }
+
     }
 
 
@@ -121,59 +137,66 @@ const DropdownForm = () => {
     };
 
     const handleThyroidFormChange = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/diagnose_Thyroid`, {
-                method: 'POST',
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    "age": parseFloat(thyroidFormData.age),
-                    "on thyroxine": parseFloat(thyroidFormData.on_thyroxine),
-                    "query on thyroxine": parseFloat(thyroidFormData.query_on_thyroxine),
-                    "on antithyroid medication": parseFloat(thyroidFormData.on_antithyroid_medication),
-                    "pregnant": parseFloat(thyroidFormData.pregnant),
-                    "thyroid surgery": parseFloat(thyroidFormData.thyroid_surgery),
-                    "tumor": parseFloat(thyroidFormData.tumor),
-                    "T3": parseFloat(thyroidFormData.T3),
-                    "TT4": parseFloat(thyroidFormData.TT4),
-                    "T4U": parseFloat(thyroidFormData.T4U),
-                    "FTI": parseFloat(thyroidFormData.FTI)
-                }),
-            })
-            const data = await response.json();
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/diagnose_Thyroid`, {
+                    method: 'POST',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "age": parseFloat(thyroidFormData.age),
+                        "on thyroxine": parseFloat(thyroidFormData.on_thyroxine),
+                        "query on thyroxine": parseFloat(thyroidFormData.query_on_thyroxine),
+                        "on antithyroid medication": parseFloat(thyroidFormData.on_antithyroid_medication),
+                        "pregnant": parseFloat(thyroidFormData.pregnant),
+                        "thyroid surgery": parseFloat(thyroidFormData.thyroid_surgery),
+                        "tumor": parseFloat(thyroidFormData.tumor),
+                        "T3": parseFloat(thyroidFormData.T3),
+                        "TT4": parseFloat(thyroidFormData.TT4),
+                        "T4U": parseFloat(thyroidFormData.T4U),
+                        "FTI": parseFloat(thyroidFormData.FTI)
+                    }),
+                })
+                const data = await response.json();
 
-            if (data.status === 'success') {
+                if (data.status === 'success') {
 
-                setVisibility("font-bold text-[30px] flex");
-                setprob(data.probability);
+                    setVisibility("font-bold text-[30px] flex");
+                    setprob(data.probability);
 
-                setThyroidFormData({
-                    age: '',
-                    on_thyroxine: '',
-                    query_on_thyroxine: '',
-                    on_antithyroid_medication: '',
-                    pregnant: '',
-                    thyroid_surgery: '',
-                    tumor: '',
-                    T3: '',
-                    TT4: '',
-                    T4U: '',
-                    FTI: '',
-                });
+                    setThyroidFormData({
+                        age: '',
+                        on_thyroxine: '',
+                        query_on_thyroxine: '',
+                        on_antithyroid_medication: '',
+                        pregnant: '',
+                        thyroid_surgery: '',
+                        tumor: '',
+                        T3: '',
+                        TT4: '',
+                        T4U: '',
+                        FTI: '',
+                    });
+                }
+                if (data.status === 'failed') {
+                    console.log("The status code :", data.status)
+                    console.log("diagnose failed");
+                }
+
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
+
             }
-            if (data.status === 'failed') {
-                console.log("The status code :", data.status)
-                console.log("diagnose failed");
-            }
-
-
-        } catch (err) {
-            console.error(`Error diagnosing the user`, err.message);
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
 
         }
+
     }
 
 
@@ -185,31 +208,38 @@ const DropdownForm = () => {
     }
 
     const handlePneumoniaFormChange = async (e) => {
-        e.preventDefault();
-        try {
-            const formData = new FormData();
-            formData.append('image', pneumoniaImage);
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const formData = new FormData();
+                formData.append('image', pneumoniaImage);
 
-            const response = await fetch('http://127.0.0.1:5000/diagnose_Pneumonia', {
-                method: 'POST',
-                body: formData,
-                credentials: 'include',
-            });
+                const response = await fetch('http://127.0.0.1:5000/diagnose_Pneumonia', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include',
+                });
 
-            const data = await response.json();
-            // console.log(data)
-            if (data.status === 'success') {
-                setVisibility("font-bold text-[30px] flex");
-                setprob(data.probability);
-                setPneumoniaImage('');
-            } else if (data.status === 'failed') {
-                console.log("The status code:", data.status);
-                console.log("diagnose failed");
+                const data = await response.json();
+                // console.log(data)
+                if (data.status === 'success') {
+                    setVisibility("font-bold text-[30px] flex");
+                    setprob(data.probability);
+                    setPneumoniaImage('');
+                } else if (data.status === 'failed') {
+                    console.log("The status code:", data.status);
+                    console.log("diagnose failed");
+                }
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
             }
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
 
-        } catch (err) {
-            console.error(`Error diagnosing the user`, err.message);
         }
+
     };
 
 
@@ -234,84 +264,91 @@ const DropdownForm = () => {
         concave_points_worst: '',
         symmetry_worst: '',
         fractal_dimension_worst: '',
-      });
-    
-      const handleBreastCancerInputChange = (e, fieldName) => {
+    });
+
+    const handleBreastCancerInputChange = (e, fieldName) => {
         setBreastCancerFormData({
-          ...breastCancerFormData,
-          [fieldName]: e.target.value,
+            ...breastCancerFormData,
+            [fieldName]: e.target.value,
         });
         setVisibility("font-bold text-[30px] hidden");
-      };
+    };
 
-      const handleBreastCancerFormChange = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/diagnose_Breast_Cancer`, {
-                method: 'POST',
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    "radius_mean": parseFloat(breastCancerFormData.radius_mean),
-                    "texture_mean": parseFloat(breastCancerFormData.texture_mean),
-                    "perimeter_mean": parseFloat(breastCancerFormData.perimeter_mean),
-                    "area_mean": parseFloat(breastCancerFormData.area_mean),
-                    "smoothness_mean": parseFloat(breastCancerFormData.smoothness_mean),
-                    "compactness_mean": parseFloat(breastCancerFormData.compactness_mean),
-                    "concavity_mean": parseFloat(breastCancerFormData.concavity_mean),
-                    "concave_points_mean": parseFloat(breastCancerFormData.concave_points_mean),
-                    "radius_worst": parseFloat(breastCancerFormData.radius_worst),
-                    "texture_worst": parseFloat(breastCancerFormData.texture_worst),
-                    "perimeter_worst": parseFloat(breastCancerFormData.perimeter_worst),
-                    "area_worst": parseFloat(breastCancerFormData.area_worst),
-                    "smoothness_worst": parseFloat(breastCancerFormData.smoothness_worst),
-                    "compactness_worst": parseFloat(breastCancerFormData.compactness_worst),
-                    "concavity_worst": parseFloat(breastCancerFormData.concavity_worst),
-                    "concave_points_worst": parseFloat(breastCancerFormData.concave_points_worst),
-                    "symmetry_worst": parseFloat(breastCancerFormData.symmetry_worst),
-                    "fractal_dimension_worst" : parseFloat(breastCancerFormData.fractal_dimension_worst)
-                }),
-            })
-            const data = await response.json();
+    const handleBreastCancerFormChange = async (e) => {
+        if (jwt) {
+            e.preventDefault();
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/diagnose_Breast_Cancer`, {
+                    method: 'POST',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "radius_mean": parseFloat(breastCancerFormData.radius_mean),
+                        "texture_mean": parseFloat(breastCancerFormData.texture_mean),
+                        "perimeter_mean": parseFloat(breastCancerFormData.perimeter_mean),
+                        "area_mean": parseFloat(breastCancerFormData.area_mean),
+                        "smoothness_mean": parseFloat(breastCancerFormData.smoothness_mean),
+                        "compactness_mean": parseFloat(breastCancerFormData.compactness_mean),
+                        "concavity_mean": parseFloat(breastCancerFormData.concavity_mean),
+                        "concave_points_mean": parseFloat(breastCancerFormData.concave_points_mean),
+                        "radius_worst": parseFloat(breastCancerFormData.radius_worst),
+                        "texture_worst": parseFloat(breastCancerFormData.texture_worst),
+                        "perimeter_worst": parseFloat(breastCancerFormData.perimeter_worst),
+                        "area_worst": parseFloat(breastCancerFormData.area_worst),
+                        "smoothness_worst": parseFloat(breastCancerFormData.smoothness_worst),
+                        "compactness_worst": parseFloat(breastCancerFormData.compactness_worst),
+                        "concavity_worst": parseFloat(breastCancerFormData.concavity_worst),
+                        "concave_points_worst": parseFloat(breastCancerFormData.concave_points_worst),
+                        "symmetry_worst": parseFloat(breastCancerFormData.symmetry_worst),
+                        "fractal_dimension_worst": parseFloat(breastCancerFormData.fractal_dimension_worst)
+                    }),
+                })
+                const data = await response.json();
 
-            if (data.status === 'success') {
+                if (data.status === 'success') {
 
-                setVisibility("font-bold text-[30px] flex");
-                setprob(data.probability);
+                    setVisibility("font-bold text-[30px] flex");
+                    setprob(data.probability);
 
-                setBreastCancerFormData({
-                    radius_mean: '',
-                    texture_mean: '',
-                    perimeter_mean: '',
-                    area_mean: '',
-                    smoothness_mean: '',
-                    compactness_mean: '',
-                    concavity_mean: '',
-                    concave_points_mean: '',
-                    radius_worst: '',
-                    texture_worst: '',
-                    perimeter_worst: '',
-                    area_worst: '',
-                    smoothness_worst: '',
-                    compactness_worst: '',
-                    concavity_worst: '',
-                    concave_points_worst: '',
-                    symmetry_worst: '',
-                    fractal_dimension_worst: '',
-                });
+                    setBreastCancerFormData({
+                        radius_mean: '',
+                        texture_mean: '',
+                        perimeter_mean: '',
+                        area_mean: '',
+                        smoothness_mean: '',
+                        compactness_mean: '',
+                        concavity_mean: '',
+                        concave_points_mean: '',
+                        radius_worst: '',
+                        texture_worst: '',
+                        perimeter_worst: '',
+                        area_worst: '',
+                        smoothness_worst: '',
+                        compactness_worst: '',
+                        concavity_worst: '',
+                        concave_points_worst: '',
+                        symmetry_worst: '',
+                        fractal_dimension_worst: '',
+                    });
+                }
+                if (data.status === 'failed') {
+                    console.log("The status code :", data.status)
+                    console.log("diagnose failed");
+                }
+
+
+            } catch (err) {
+                console.error(`Error diagnosing the user`, err.message);
+
             }
-            if (data.status === 'failed') {
-                console.log("The status code :", data.status)
-                console.log("diagnose failed");
-            }
-
-
-        } catch (err) {
-            console.error(`Error diagnosing the user`, err.message);
+        } else {
+            navigateToLogin();
+            toast.error("Please login to use all the functions!!")
 
         }
+
     }
 
 
@@ -334,7 +371,7 @@ const DropdownForm = () => {
                 return (
                     <div>
                         <form >
-                        <div>
+                            <div>
                                 <div>
                                     <input
                                         type="text"
