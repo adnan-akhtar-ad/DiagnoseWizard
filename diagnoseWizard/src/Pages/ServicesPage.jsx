@@ -11,22 +11,22 @@ const ServicesPage = (props) => {
     const [serviceCardProps, setServiceCardProps] =
         useState([
             {
-                "serviceHeading": "Mental Health Diagnose",
+                "serviceHeading": "Covid 19 Diagnose",
                 "serviceDescription": "The service provides immediate medical care to patients with acute illnesses or injuries that require immediate attention",
                 "imgUrl": "/assets/image 27.svg"
             },
             {
-                "serviceHeading": "Eye Diseasses Diagnose",
+                "serviceHeading": "Pneumonia Diagnose",
                 "serviceDescription": "The service provides immediate  medical care to patients with acute illnesses or injuries that require immediate attention",
                 "imgUrl": "/assets/Screen Shot 2023-09-14 at 14.01.svg"
             },
             {
-                "serviceHeading": "Vaccination Diagnose",
+                "serviceHeading": "Diabetes Diagnose",
                 "serviceDescription": "The service provides immediate  medical care to patients with acute illnesses or injuries that require immediate attention",
                 "imgUrl": "/assets/Screen Shot 2023-09-14 at 14.01(1).svg"
             },
             {
-                "serviceHeading": "Cardiology Diagnose",
+                "serviceHeading": "Thyroid Diagnose",
                 "serviceDescription": "The service provides immediate medical care to patients with acute illnesses or injuries that require immediate attention",
                 "imgUrl": "/assets/Screen Shot 2023-09-14 at 14.02.svg"
             }
