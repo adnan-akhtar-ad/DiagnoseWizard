@@ -237,7 +237,154 @@ const DropdownForm = () => {
                 return (
                     <div>
                         <form >
-                            
+                        <div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='age'
+                                        value={thyroidFormData.age}
+                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+
+
+                            </div>
                             <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleThyroidFormChange}>Diagnose Me</button>
                         </form>
                         <div>
