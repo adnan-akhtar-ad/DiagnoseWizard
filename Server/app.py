@@ -55,20 +55,20 @@ def diagnose_Thyroid():
     except Exception as e:
         return jsonify({'error': str(e)})
 
-#Diagnose Controller
+#Breast Cancer Controller
 
 @app.route('/diagnose_Breast_Cancer', methods=['POST'])
 def diagnose_Breast_Cancer():
     try:
-        Breast_Cancer_model=pickle.load(open('Ml Models/Breast_Cancer_Model.pkl', 'rb'))
+        Breast_Cancer_model = pickle.load(open('Ml Models/Breast_Cancer_Model.pkl', 'rb'))
         data = request.get_json()
         int_features = [value for value in data.values()]
         final = [np.array(int_features)]
-        prediction = Breast_Cancer_model.predict_proba(final)
-        output = '{0:.{1}f}'.format(prediction[0][1], 2)
-        return jsonify({'status':'success','probability': output})
+        prediction = Breast_Cancer_model.predict(final)
+        output = '{0:.{1}f}'.format(prediction[0], 2)
+        return jsonify({'status': 'success', 'probability': float(output)})
     except Exception as e:
-        return jsonify({'error': str(e)})        
+        return jsonify({'error': str(e)})       
 
 #Pneumonia Controller
 
