@@ -6,10 +6,22 @@ const DropdownForm = () => {
     const [prob, setprob] = useState("");
     const [probColour, setProbColour] = useState("ml-[10px] text-[#07f79f]");
     const [visibility, setVisibility] = useState("font-bold text-[30px] hidden ");
-    const [selectedOption, setSelectedOption] = useState('Malaria');
+    const [selectedOption, setSelectedOption] = useState('Diabetes');
     const handleDropdownChange = (event) => {
         setSelectedOption(event.target.value);
     };
+    //probability text colour
+    useEffect(() => {
+        if (parseFloat(prob) >= 0.75) {
+            setProbColour("ml-[10px]  text-[#f70733]")
+        } else if (parseFloat(prob) < 0.75 && parseFloat(prob) > 0.3) {
+            setProbColour("ml-[10px] text-[#f7db07]")
+        } else {
+            setProbColour("ml-[10px] text-[#07f79f]")
+        }
+    }, [prob]);
+
+
 
     //diabetes states and request
     const [diabetesFormData, setDiabetesFormData] = useState({
@@ -200,16 +212,9 @@ const DropdownForm = () => {
     };
 
 
-    //probability text colour
-    useEffect(() => {
-        if (parseFloat(prob) >= 0.75) {
-            setProbColour("ml-[10px]  text-[#f70733]")
-        } else if (parseFloat(prob) < 0.75 && parseFloat(prob) > 0.3) {
-            setProbColour("ml-[10px] text-[#f7db07]")
-        } else {
-            setProbColour("ml-[10px] text-[#07f79f]")
-        }
-    }, [prob]);
+
+    //Breast Cancer states and request
+
 
 
 
@@ -220,25 +225,27 @@ const DropdownForm = () => {
 
     const renderForm = () => {
         switch (selectedOption) {
-            case 'COVID19':
+            case 'Covid 19':
                 return (
                     <form>
-                        <input type="text" placeholder='FOR COVID19' />
+                        <input type="text" placeholder='FOR Covid 19' />
                     </form>
                 );
 
-            case 'Malaria':
-                return (
-                    <form>
-                        <input type="text" placeholder='FOR MALARIA' />
-                    </form>
-                );
 
             case 'BreastCancer':
                 return (
-                    <form>
-                        <input className="border-[#979797]" type="text" placeholder='FOR BREAST CANCER' />
-                    </form>
+                    <div>
+                        <form >
+                            
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleThyroidFormChange}>Diagnose Me</button>
+                        </form>
+                        <div>
+                            <h3 className={visibility}>
+                                The probability of you having Thyroid is  <span className={probColour}>{prob}</span>!!
+                            </h3>
+                        </div>
+                    </div>
                 );
 
             case 'Thyroid':
@@ -359,12 +366,7 @@ const DropdownForm = () => {
                     </div>
                 );
 
-            case 'Typhoid':
-                return (
-                    <form>
-                        <input type="text" placeholder='FOR TYPHOID' />
-                    </form>
-                );
+
 
             case 'Pneumonia':
                 return (
@@ -487,11 +489,9 @@ const DropdownForm = () => {
                 <DiagnosesHeading />
                 <div className="text-start">
                     <select className="" onChange={handleDropdownChange}>
-                        <option value="Malaria">Malaria</option>
-                        <option value="COVID19">COVID19</option>
+                        <option value="Covid 19">Covid 19</option>
                         <option value="BreastCancer">Breast Cancer</option>
                         <option value="Thyroid">Thyroid</option>
-                        <option value="Typhoid">Typhoid</option>
                         <option value="Pneumonia">Pneumonia</option>
                         <option value="Diabetes">Diabetes</option>
                         <option value="Parkinsons">Parkinsons</option>
