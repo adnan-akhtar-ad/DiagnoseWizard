@@ -177,46 +177,24 @@ const DropdownForm = () => {
     const handlePneumoniaFormChange = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://127.0.0.1:5000/diagnose_Thyroid`, {
+
+            const formData = new FormData();
+            formData.append('image', pneumoniaImage);
+
+            const response = await fetch('http://127.0.0.1:5000/diagnose_Pneumonia', {
                 method: 'POST',
-                credentials: "include",
+                body: formData,
+                credentials: 'include',
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'multipart/form-data',
                 },
-                body: JSON.stringify({
-                    "age": parseFloat(thyroidFormData.age),
-                    "on thyroxine": parseFloat(thyroidFormData.on_thyroxine),
-                    "query on thyroxine": parseFloat(thyroidFormData.query_on_thyroxine),
-                    "on antithyroid medication": parseFloat(thyroidFormData.on_antithyroid_medication),
-                    "pregnant": parseFloat(thyroidFormData.pregnant),
-                    "thyroid surgery": parseFloat(thyroidFormData.thyroid_surgery),
-                    "tumor": parseFloat(thyroidFormData.tumor),
-                    "T3": parseFloat(thyroidFormData.T3),
-                    "TT4": parseFloat(thyroidFormData.TT4),
-                    "T4U": parseFloat(thyroidFormData.T4U),
-                    "FTI": parseFloat(thyroidFormData.FTI)
-                }),
             })
             const data = await response.json();
-
             if (data.status === 'success') {
 
                 setVisibility("font-bold text-[30px] flex");
                 setprob(data.probability);
-
-                setThyroidFormData({
-                    age: '',
-                    on_thyroxine: '',
-                    query_on_thyroxine: '',
-                    on_antithyroid_medication: '',
-                    pregnant: '',
-                    thyroid_surgery: '',
-                    tumor: '',
-                    T3: '',
-                    TT4: '',
-                    T4U: '',
-                    FTI: '',
-                });
+                setPneumoniaImage('');
             }
             if (data.status === 'failed') {
                 console.log("The status code :", data.status)
@@ -418,12 +396,6 @@ const DropdownForm = () => {
                     </div>
                 );
 
-            case 'BrainTumor':
-                return (
-                    <form>
-                        <input type="text" placeholder='FOR BRAIN TUMOR' />
-                    </form>
-                );
 
             case 'Diabetes':
                 return (
@@ -530,7 +502,6 @@ const DropdownForm = () => {
                         <option value="Typhoid">Typhoid</option>
                         <option value="Pneumonia">Pneumonia</option>
                         <option value="Diabetes">Diabetes</option>
-                        <option value="BrainTumor">Brain Tumor</option>
                         <option value="Parkinsons">Parkinsons</option>
                     </select>
                 </div>

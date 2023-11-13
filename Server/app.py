@@ -7,6 +7,8 @@ app = Flask(__name__)
 # ML Models
 diabetes_model = pickle.load(open('./Ml Models/diabetes.pkl', 'rb'))
 thyroid_model=pickle.load(open('./Ml Models/thyroid_model.pkl', 'rb'))
+pneumonia_model=pickle.load(open('./Ml Models/pneumonia_model.pkl', 'rb'))
+
 
 # Enable CORS for the /diagnose_Diabetes route
 @app.after_request
@@ -45,6 +47,18 @@ def diagnose_Thyroid():
         int_features = [value for value in data.values()]
         final = [np.array(int_features)]
         prediction = thyroid_model.predict_proba(final)
+        output = '{0:.{1}f}'.format(prediction[0][1], 2)
+        return jsonify({'status':'success','probability': output})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+@app.route('/diagnose_Pneumonia', methods=['POST'])
+def diagnose_Pneumonia():
+    try:
+        data = request.get_json()
+        # int_features = [value for value in data.values()]
+        final = [np.array(data)]
+        prediction = pneumonia_model.predict_proba(final)
         output = '{0:.{1}f}'.format(prediction[0][1], 2)
         return jsonify({'status':'success','probability': output})
     except Exception as e:
