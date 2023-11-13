@@ -52,9 +52,9 @@ const DropdownForm = () => {
                 }),
             })
             const data = await response.json();
-            
+
             if (data.status === 'success') {
-         
+
                 setVisibility("font-bold text-[30px] flex");
                 setprob(data.probability);
 
@@ -84,7 +84,7 @@ const DropdownForm = () => {
 
 
 
-    //Thyroid states
+    //Thyroid states and request
 
     const [thyroidFormData, setThyroidFormData] = useState({
         age: '',
@@ -132,9 +132,9 @@ const DropdownForm = () => {
                 }),
             })
             const data = await response.json();
-      
+
             if (data.status === 'success') {
-            
+
                 setVisibility("font-bold text-[30px] flex");
                 setprob(data.probability);
 
@@ -165,7 +165,70 @@ const DropdownForm = () => {
     }
 
 
+    //pneumonia states and request
+    const [pneumoniaImage, setPneumoniaImage] = useState('');
 
+    const handlePneumoniaInputChange = (e) => {
+        console.log(e.target.files);
+        setPneumoniaImage(e.target.files[0]);
+        console.log(pneumoniaImage);
+    }
+
+    const handlePneumoniaFormChange = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/diagnose_Thyroid`, {
+                method: 'POST',
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "age": parseFloat(thyroidFormData.age),
+                    "on thyroxine": parseFloat(thyroidFormData.on_thyroxine),
+                    "query on thyroxine": parseFloat(thyroidFormData.query_on_thyroxine),
+                    "on antithyroid medication": parseFloat(thyroidFormData.on_antithyroid_medication),
+                    "pregnant": parseFloat(thyroidFormData.pregnant),
+                    "thyroid surgery": parseFloat(thyroidFormData.thyroid_surgery),
+                    "tumor": parseFloat(thyroidFormData.tumor),
+                    "T3": parseFloat(thyroidFormData.T3),
+                    "TT4": parseFloat(thyroidFormData.TT4),
+                    "T4U": parseFloat(thyroidFormData.T4U),
+                    "FTI": parseFloat(thyroidFormData.FTI)
+                }),
+            })
+            const data = await response.json();
+
+            if (data.status === 'success') {
+
+                setVisibility("font-bold text-[30px] flex");
+                setprob(data.probability);
+
+                setThyroidFormData({
+                    age: '',
+                    on_thyroxine: '',
+                    query_on_thyroxine: '',
+                    on_antithyroid_medication: '',
+                    pregnant: '',
+                    thyroid_surgery: '',
+                    tumor: '',
+                    T3: '',
+                    TT4: '',
+                    T4U: '',
+                    FTI: '',
+                });
+            }
+            if (data.status === 'failed') {
+                console.log("The status code :", data.status)
+                console.log("diagnose failed");
+            }
+
+
+        } catch (err) {
+            console.error(`Error diagnosing the user`, err.message);
+
+        }
+    }
 
     //probability text colour
     useEffect(() => {
@@ -335,9 +398,24 @@ const DropdownForm = () => {
 
             case 'Pneumonia':
                 return (
-                    <form>
-                        <input type="text" placeholder='FOR PNEUMONIA' />
-                    </form>
+                    <div>
+                        <form >
+                            <div>
+                                <input
+                                    type="file"
+                                    className="w-[420px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    onChange={handlePneumoniaInputChange}
+                                />
+
+                            </div>
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handlePneumoniaFormChange}>Diagnose Me</button>
+                        </form>
+                        <div>
+                            <h3 className={visibility}>
+                                The probability of you having Thyroid is  <span className={probColour}>{prob}</span>!!
+                            </h3>
+                        </div>
+                    </div>
                 );
 
             case 'BrainTumor':
