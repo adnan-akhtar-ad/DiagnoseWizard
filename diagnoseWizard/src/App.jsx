@@ -23,6 +23,7 @@ function App() {
   const ConnectWithUsSection = useRef(null);
   const FooterSection = useRef(null);
   const jwt = sessionStorage.getItem('jwt');
+  const encryptedData=sessionStorage.getItem('encryptedData');
   return (
     <div >
       <Navbar message={"login successful"}
@@ -64,7 +65,7 @@ function App() {
         <Route path='/forgetPassword' element={<ForgotPassword/>} />
         {!jwt && <Route path='/login' element={<LoginPage />} />}
         {!jwt && <Route path='/signup' element={<SignUpPage />} />}
-        {jwt && <Route path='/changePass' element={<ChangePassword />} />}
+        {encryptedData && <Route path='/changePass' element={<ChangePassword />} />}
 
         <Route path='*' element={<PageNotFound />} />
       </Routes>
