@@ -13,7 +13,7 @@ import { useRef } from 'react';
 import PageNotFound from './Pages/PageNotFound';
 import Doctors from './Pages/Doctors';
 import DiagnosesPage from './Pages/DiagnosesPage';
-
+import ForgotPassword from './Pages/ForgotPassword';
 function App() {
   const HomeSection = useRef(null);
   const AboutSection = useRef(null);
@@ -61,6 +61,7 @@ function App() {
             />} />
         <Route path='/hospitals' element={<Doctors />} />
         <Route path='/diagnoses' element={<DiagnosesPage />} />
+        <Route path='/forgetPassword' element={<ForgotPassword/>} />
         {!jwt && <Route path='/login' element={<LoginPage />} />}
         {!jwt && <Route path='/signup' element={<SignUpPage />} />}
         {jwt && <Route path='/changePass' element={<ChangePassword />} />}

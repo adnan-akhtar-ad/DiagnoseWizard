@@ -94,7 +94,7 @@ const LoginPage = () => {
         onClick={handleLogIn}
         >Login</button>
         <div className='mt-[10px]'>Not registered yet? <Link to="/signup" className='text-[#3b82f6] hover:underline'>Create account</Link></div>
-        <a href="#" className='text-[#3b82f6] hover:underline'>Forget Password?</a>
+        <Link to="/forgetPassword" className='text-[#3b82f6] hover:underline'>Forget Password?</Link>
       </div>
 
     </section>
