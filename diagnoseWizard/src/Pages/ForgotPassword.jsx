@@ -38,6 +38,7 @@ const ForgotPassword = () => {
                 setOtpVisibility('block my-[20px]');
                 setEmailVisibility('hidden');
                 setOtp(data.data.otp);
+                setUserEmail('');
                 sessionStorage.setItem("encryptedData", data.data.user_id.encryptedData);
             }
             if (!response.ok) {
@@ -59,6 +60,7 @@ const ForgotPassword = () => {
     const handleVerifyOtp = () => {
         if (otp == userOtp) {
             setOtpVisibility('hidden');
+            setOtp('');
             setEmailVisibility('block my-[20px]');
             navigateToChangePassword();
         } else {
