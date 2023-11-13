@@ -214,8 +214,103 @@ const DropdownForm = () => {
 
 
     //Breast Cancer states and request
+    const [breastCancerFormData, setBreastCancerFormData] = useState({
+        radius_mean: '',
+        texture_mean: '',
+        perimeter_mean: '',
+        area_mean: '',
+        smoothness_mean: '',
+        compactness_mean: '',
+        concavity_mean: '',
+        concave_points_mean: '',
+        radius_worst: '',
+        texture_worst: '',
+        perimeter_worst: '',
+        area_worst: '',
+        smoothness_worst: '',
+        compactness_worst: '',
+        concavity_worst: '',
+        concave_points_worst: '',
+        symmetry_worst: '',
+        fractal_dimension_worst: '',
+      });
+    
+      const handleBreastCancerInputChange = (e, fieldName) => {
+        setBreastCancerFormData({
+          ...formData,
+          [fieldName]: e.target.value,
+        });
+      };
+
+      const handleBreastCancerFormChange = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/diagnose_Breast_Cancer`, {
+                method: 'POST',
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "radius_mean": parseFloat(breastCancerFormData.radius_mean),
+                    "texture_mean": parseFloat(breastCancerFormData.texture_mean),
+                    "perimeter_mean": parseFloat(breastCancerFormData.perimeter_mean),
+                    "area_mean": parseFloat(breastCancerFormData.area_mean),
+                    "smoothness_mean": parseFloat(breastCancerFormData.smoothness_mean),
+                    "compactness_mean": parseFloat(breastCancerFormData.compactness_mean),
+                    "concavity_mean": parseFloat(breastCancerFormData.concavity_mean),
+                    "concave_points_mean": parseFloat(breastCancerFormData.concave_points_mean),
+                    "radius_worst": parseFloat(breastCancerFormData.radius_worst),
+                    "texture_worst": parseFloat(breastCancerFormData.texture_worst),
+                    "perimeter_worst": parseFloat(breastCancerFormData.perimeter_worst),
+                    "area_worst": parseFloat(breastCancerFormData.area_worst),
+                    "smoothness_worst": parseFloat(breastCancerFormData.smoothness_worst),
+                    "compactness_worst": parseFloat(breastCancerFormData.compactness_worst),
+                    "concavity_worst": parseFloat(breastCancerFormData.concavity_worst),
+                    "concave_points_worst": parseFloat(breastCancerFormData.concave_points_worst),
+                    "symmetry_worst": parseFloat(breastCancerFormData.symmetry_worst),
+                    "fractal_dimension_worst" : parseFloat(breastCancerFormData.fractal_dimension_worst)
+                }),
+            })
+            const data = await response.json();
+
+            if (data.status === 'success') {
+
+                setVisibility("font-bold text-[30px] flex");
+                setprob(data.probability);
+
+                setBreastCancerFormData({
+                    radius_mean: '',
+                    texture_mean: '',
+                    perimeter_mean: '',
+                    area_mean: '',
+                    smoothness_mean: '',
+                    compactness_mean: '',
+                    concavity_mean: '',
+                    concave_points_mean: '',
+                    radius_worst: '',
+                    texture_worst: '',
+                    perimeter_worst: '',
+                    area_worst: '',
+                    smoothness_worst: '',
+                    compactness_worst: '',
+                    concavity_worst: '',
+                    concave_points_worst: '',
+                    symmetry_worst: '',
+                    fractal_dimension_worst: '',
+                });
+            }
+            if (data.status === 'failed') {
+                console.log("The status code :", data.status)
+                console.log("diagnose failed");
+            }
 
 
+        } catch (err) {
+            console.error(`Error diagnosing the user`, err.message);
+
+        }
+    }
 
 
 
@@ -241,151 +336,151 @@ const DropdownForm = () => {
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='radius mean'
+                                        value={breastCancerFormData.radius_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'radius_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='texture mean'
+                                        value={breastCancerFormData.texture_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'texture_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                 </div>
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='perimeter mean'
+                                        value={breastCancerFormData.perimeter_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'perimeter_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='area mean'
+                                        value={breastCancerFormData.area_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'area_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                 </div>
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='smoothness mean'
+                                        value={breastCancerFormData.smoothness_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'smoothness_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='compactness mean'
+                                        value={breastCancerFormData.compactness_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'compactness_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                 </div>
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='concavity mean'
+                                        value={breastCancerFormData.concavity_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concavity_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
-                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='concave points mean'
+                                        value={breastCancerFormData.concave_points_mean}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concave_points_mean')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                 </div>
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='radius worst'
+                                        value={breastCancerFormData.radius_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'radius_worst')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                     <input
                                         type="text"
-                                        placeholder='age'
-                                        value={thyroidFormData.age}
-                                        onChange={(e) => handleThyroidInputChange(e, 'age')}
+                                        placeholder='texture worst'
+                                        value={breastCancerFormData.texture_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'texture_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='perimeter worst'
+                                        value={breastCancerFormData.perimeter_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'perimeter_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='area worst'
+                                        value={breastCancerFormData.area_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'area_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='smoothness worst'
+                                        value={breastCancerFormData.smoothness_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'smoothness_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='compactness worst'
+                                        value={breastCancerFormData.compactness_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'compactness_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='concavity worst'
+                                        value={breastCancerFormData.concavity_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concavity_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='concave points worst'
+                                        value={breastCancerFormData.concave_points_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'concave_points_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        type="text"
+                                        placeholder='symmetry worst'
+                                        value={breastCancerFormData.symmetry_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'symmetry_worst')}
+                                        className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder='fractal dimension worst'
+                                        value={breastCancerFormData.fractal_dimension_worst}
+                                        onChange={(e) => handleBreastCancerInputChange(e, 'fractal_dimension_worst')}
                                         className="w-[200px]  m-[10px] h-[50px] rounded-xl my-[10px] border-[1px] border-[#979797] p-[10px]"
                                     />
                                 </div>
 
 
                             </div>
-                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleThyroidFormChange}>Diagnose Me</button>
+                            <button className="mx-[auto] w-[150px] h-[40px] bg-[#18A0A9] text-[#FFFFFF] font-medium rounded-xl my-[10px]" type='submit' onClick={handleBreastCancerFormChange}>Diagnose Me</button>
                         </form>
                         <div>
                             <h3 className={visibility}>
