@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {useNavigate } from "react-router-dom";
+import { ToastContainer,toast } from 'react-toastify';
+
 const SignUpPage = () => {
     const navigate = useNavigate();
 
@@ -50,7 +52,8 @@ const SignUpPage = () => {
                 console.log("The status code :", response.status)
                 console.log("signup failed");
                 if (response.status === 401) {
-                    console.log("passwords doesn't match")
+                    toast.error("passwords doesn't match");
+                    
                 }
                 const errorData = await response.json();
                 throw new Error(errorData.error);
